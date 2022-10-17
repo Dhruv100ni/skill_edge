@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skill_edge/screens/Articles/articles.dart';
 
 import '../../../components/already_have_an_account_acheck.dart';
 import 'package:skill_edge/constraints.dart';
@@ -46,7 +47,16 @@ class LoginForm extends StatelessWidget {
           Hero(
             tag: "login_btn",
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return Articles();
+                    },
+                  ),
+                );
+              },
               child: Text(
                 "Login".toUpperCase(),
               ),
