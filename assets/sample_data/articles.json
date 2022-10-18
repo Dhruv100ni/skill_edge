@@ -1,0 +1,32 @@
+{
+  "articles": [
+    {
+      "id": 0,
+      "title": "CS Fundamentals",
+      "tldr": "The crux of interview prep",
+      "content": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque commodi ratione eligendi dolore deserunt provident inventore nam minus facilis consequatur fuga doloribus error, laborum, quidem modi cum autem ad enim. Maiores corporis fugit nam facilis, ipsa numquam deserunt architecto doloremque, libero necessitatibus doloribus amet veniam eius harum ab quae commodi?",
+      "image": "https://welstech.wels.net/wp-content/uploads/2017/08/csFundamentalsCurriculum.png"
+    },
+    {
+      "id": 1,
+      "title": "Why DBMS",
+      "tldr": "What is DBMS and how is it used?",
+      "content": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque commodi ratione eligendi dolore deserunt provident inventore nam minus facilis consequatur fuga doloribus error, laborum, quidem modi cum autem ad enim. Maiores corporis fugit nam facilis, ipsa numquam deserunt architecto doloremque, libero necessitatibus doloribus amet veniam eius harum ab quae commodi?",
+      "image": "https://1.bp.blogspot.com/-gl8EQrxBYF8/YCg4EhU7tRI/AAAAAAAABFo/3T32OsYPW_spQTIweRhjSiIQZ5xHpHqKwCLcBGAsYHQ/s16000/DBMS%2BFull%2BForm%2B%2528www.tutorialsmate.com%2529.png"
+    },
+    {
+      "id": 2,
+      "title": "OS Fundamentals",
+      "tldr": "OS is a core subject and asked in various interviews, what is it?",
+      "content": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque commodi ratione eligendi dolore deserunt provident inventore nam minus facilis consequatur fuga doloribus error, laborum, quidem modi cum autem ad enim. Maiores corporis fugit nam facilis, ipsa numquam deserunt architecto doloremque, libero necessitatibus doloribus amet veniam eius harum ab quae commodi?",
+      "image": "https://image.shutterstock.com/image-vector/os-letter-logo-icon-symbol-260nw-1898708386.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Computer Networks",
+      "tldr": "Sandvine naklna hai ki nahi? Usme yahi aata hai",
+      "content": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque commodi ratione eligendi dolore deserunt provident inventore nam minus facilis consequatur fuga doloribus error, laborum, quidem modi cum autem ad enim. Maiores corporis fugit nam facilis, ipsa numquam deserunt architecto doloremque, libero necessitatibus doloribus amet veniam eius harum ab quae commodi?",
+      "image": "https://image.shutterstock.com/image-vector/os-letter-logo-icon-symbol-260nw-1898708386.jpg"
+    }
+  ]
+}
