@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import "package:flutter/material.dart";
 import 'package:flutter/services.dart';
+import 'package:skill_edge/components/navigation_menu.dart';
 import 'package:skill_edge/models/article_model.dart';
 import 'package:skill_edge/screens/Articles/components/article_tile.dart';
 
@@ -22,10 +23,10 @@ class _ArticlesState extends State<Articles> {
   }
 
   void loadData() async {
-    await Future.delayed(const Duration(seconds: 2));
+    // await Future.delayed(const Duration(seconds: 2));
     var articleJSON = await rootBundle.loadString("sample_data/articles.json");
     var decodedData = jsonDecode(articleJSON);
-    print(decodedData);
+    // print(decodedData);
     articleData = List.from(decodedData["articles"])
         .map<ArticleModel>((article) => ArticleModel.fromMap(article))
         .toList();
@@ -49,10 +50,20 @@ class _ArticlesState extends State<Articles> {
         ),
         body: Padding(
           padding: const EdgeInsets.all(20.0),
-          child: ListView.builder(
-              itemCount: articleData.length,
-              itemBuilder: (context, index) =>
-                  ArticleTile(article: articleData[index])),
+          child: Column(
+            children: [
+              const NavigationMenu(ind: 2),
+              const SizedBox(
+                height: 20,
+              ),
+              Expanded(
+                child: ListView.builder(
+                    itemCount: articleData.length,
+                    itemBuilder: (context, index) =>
+                        ArticleTile(article: articleData[index])),
+              ),
+            ],
+          ),
         ));
   }
 }

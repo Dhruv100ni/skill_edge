@@ -48,13 +48,9 @@ class LoginForm extends StatelessWidget {
             tag: "login_btn",
             child: ElevatedButton(
               onPressed: () {
-                Navigator.push(
+                Navigator.pushNamed(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return Articles();
-                    },
-                  ),
+                  "/articles",
                 );
               },
               child: Text(
