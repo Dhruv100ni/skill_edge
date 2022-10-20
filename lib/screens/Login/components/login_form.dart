@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:skill_edge/screens/Articles/articles.dart';
 
 import '../../../components/already_have_an_account_acheck.dart';
 import 'package:skill_edge/constraints.dart';
