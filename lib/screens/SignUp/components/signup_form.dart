@@ -2,11 +2,32 @@ import 'package:flutter/material.dart';
 import '../../../components/already_have_an_account_acheck.dart';
 import 'package:skill_edge/constraints.dart';
 import 'package:skill_edge/screens/Login/login_screen.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 
-class SignUpForm extends StatelessWidget {
-  const SignUpForm({
-    Key? key,
-  }) : super(key: key);
+class SignUpForm extends StatefulWidget {
+  const SignUpForm({super.key});
+
+  @override
+  State<SignUpForm> createState() => _SignUpFormState();
+}
+
+class _SignUpFormState extends State<SignUpForm> {
+  late final TextEditingController _email;
+  late final TextEditingController _password;
+
+  @override
+  void initState(){
+    _email = TextEditingController();
+    _password = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose(){
+    _email.dispose();
+    _password.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +35,7 @@ class SignUpForm extends StatelessWidget {
       child: Column(
         children: [
           TextFormField(
+            controller: _email,
             keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
             cursorColor: kPrimaryColor,
@@ -29,6 +51,7 @@ class SignUpForm extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: defaultPadding),
             child: TextFormField(
+              controller: _password,
               textInputAction: TextInputAction.done,
               obscureText: true,
               cursorColor: kPrimaryColor,
@@ -43,7 +66,24 @@ class SignUpForm extends StatelessWidget {
           ),
           const SizedBox(height: defaultPadding / 2),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () async {
+              final email = _email;
+              final password = _password;
+              // try{
+              //   final userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+              //     email: email, password: password);
+              //   )
+              //   print(userCredential);
+              // } on FirebaseAuthException catch(e){
+              //   if (e.code == 'weak-password') {
+              //     print('WEAK PASSWORD');
+              //   } else if (e.code == 'email-already-in-use') {
+              //     print('EMAIL ALREADY USED');
+              //   } else if (e.code == 'invalid-email') {
+              //     print('INVALID EMAIL ENTERED');
+              //   }
+              // }
+            },
             child: Text("Sign Up".toUpperCase()),
           ),
           const SizedBox(height: defaultPadding),
