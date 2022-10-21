@@ -9,9 +9,9 @@ class Article extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 18.0),
-          child: const Text("SKILL EDGE"),
+        title: const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 18.0),
+          child: Text("SKILL EDGE"),
         ),
         // centerTitle: true,
         automaticallyImplyLeading: false,
@@ -20,9 +20,28 @@ class Article extends StatelessWidget {
             color: Colors.black, fontSize: 25, fontWeight: FontWeight.bold),
         iconTheme: const IconThemeData(color: Colors.black),
       ),
-      body: Column(children: [
-        Text(article.title),
-      ]),
+      body: Column(
+          //mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 20),
+            Center(
+              child: Container(
+                constraints: const BoxConstraints(maxWidth: 400),
+                child: Image.network(article.image),
+              ),
+            ),
+            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Text(
+                article.title,
+                textAlign: TextAlign.left,
+                textScaleFactor: 2.5,
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
+          ]),
     );
   }
 }
