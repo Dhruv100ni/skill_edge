@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:skill_edge/models/article_model.dart';
+import 'package:skill_edge/screens/Article/article.dart';
 
 class ArticleTile extends StatelessWidget {
   final ArticleModel article;
@@ -12,7 +13,11 @@ class ArticleTile extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: Card(
         child: ListTile(
-          onTap: () {},
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return Article(article: article);
+            }));
+          },
           leading: Image.network(
             article.image,
             width: 100,
