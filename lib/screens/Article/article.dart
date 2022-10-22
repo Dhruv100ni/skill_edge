@@ -20,28 +20,37 @@ class Article extends StatelessWidget {
             color: Colors.black, fontSize: 25, fontWeight: FontWeight.bold),
         iconTheme: const IconThemeData(color: Colors.black),
       ),
-      body: Column(
-          //mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 20),
-            Center(
-              child: Container(
-                constraints: const BoxConstraints(maxWidth: 400),
-                child: Image.network(article.image),
+      body: SingleChildScrollView(
+        child: Column(
+            //mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 20),
+              Center(
+                child: Container(
+                  constraints: const BoxConstraints(maxWidth: 400),
+                  child: Image.network(article.image),
+                ),
               ),
-            ),
-            const SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Text(
-                article.title,
-                textAlign: TextAlign.left,
-                textScaleFactor: 2.5,
-                style: const TextStyle(fontWeight: FontWeight.bold),
+              const SizedBox(height: 20),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Text(
+                  article.title,
+                  textAlign: TextAlign.left,
+                  textScaleFactor: 2.5,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
               ),
-            ),
-          ]),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Text(
+                  article.content,
+                  textAlign: TextAlign.justify,
+                ),
+              )
+            ]),
+      ),
     );
   }
 }
