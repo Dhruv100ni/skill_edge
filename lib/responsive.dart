@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
+// import 'package:skill_edge/screens/Articles/articles.dart';
+
 class Responsive extends StatelessWidget {
   final Widget mobile;
   final Widget? tablet;
-  final Widget desktop;
+  final Widget desktop;   
 
+  
   const Responsive({
     Key? key,
     required this.mobile,
