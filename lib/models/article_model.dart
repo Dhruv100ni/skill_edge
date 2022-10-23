@@ -1,13 +1,12 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 class ArticleModel {
-  final int id;
-  final String title;
-  final String tldr;
-  final String content;
-  final String image;
-
+  final int id;     // id
+  final String title;     // title
+  final String tldr;      // tldr
+  final String content;   // content
+  final String image;     // image
+  
   ArticleModel(
     this.id,
     this.title,
