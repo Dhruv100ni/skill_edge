@@ -15,6 +15,7 @@ class Articles extends StatefulWidget {
 
 class _ArticlesState extends State<Articles> {
   List<ArticleModel> articleData = [];
+  //List mapData = [];
 
   @override
   void initState() {
@@ -30,6 +31,7 @@ class _ArticlesState extends State<Articles> {
     articleData = List.from(decodedData["articles"])
         .map<ArticleModel>((article) => ArticleModel.fromMap(article))
         .toList();
+    //mapData = decodedData["articles"];
     setState(() {});
   }
 
