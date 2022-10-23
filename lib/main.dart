@@ -17,7 +17,6 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
         primarySwatch: Colors.lightBlue,
-
       ),
       routes: {
         "/": (context) => const WelcomeScreen(),

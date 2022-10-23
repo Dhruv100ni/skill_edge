@@ -8,18 +8,6 @@ class Article extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 18.0),
-          child: Text("SKILL EDGE"),
-        ),
-        // centerTitle: true,
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.white,
-        titleTextStyle: const TextStyle(
-            color: Colors.black, fontSize: 25, fontWeight: FontWeight.bold),
-        iconTheme: const IconThemeData(color: Colors.black),
-      ),
       body: SingleChildScrollView(
         child: Column(
             //mainAxisAlignment: MainAxisAlignment.start,

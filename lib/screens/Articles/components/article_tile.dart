@@ -9,9 +9,7 @@ class ArticleTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10.0),
-      child: Card(
+    return Card(
         child: ListTile(
           onTap: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -26,8 +24,8 @@ class ArticleTile extends StatelessWidget {
           title: Text(article.title),
           subtitle: Text(article.tldr),
           trailing: const Text("Read"),
+          isThreeLine: true,
         ),
-      ),
-    );
+      );
   }
 }
