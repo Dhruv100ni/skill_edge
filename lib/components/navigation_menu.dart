@@ -10,7 +10,7 @@ class NavigationText extends StatelessWidget {
     return InkWell(
       onTap: () {
         print("/${opt.toLowerCase()}");
-        // Navigator.pushNamed(context, "/${opt.toLowerCase()}");
+        Navigator.pushNamed(context, "/${opt.toLowerCase()}");
       },
       child: Container(
         decoration: BoxDecoration(

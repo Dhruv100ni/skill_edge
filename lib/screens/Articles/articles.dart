@@ -15,6 +15,7 @@ class Articles extends StatefulWidget {
 
 class _ArticlesState extends State<Articles> {
   List<ArticleModel> articleData = [];
+  //List mapData = [];
 
   @override
   void initState() {
@@ -30,6 +31,7 @@ class _ArticlesState extends State<Articles> {
     articleData = List.from(decodedData["articles"])
         .map<ArticleModel>((article) => ArticleModel.fromMap(article))
         .toList();
+    //mapData = decodedData["articles"];
     setState(() {});
   }
 
@@ -37,9 +39,9 @@ class _ArticlesState extends State<Articles> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 18.0),
-            child: const Text("SKILL EDGE"),
+          title: const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 18.0),
+            child: Text("SKILL EDGE"),
           ),
           // centerTitle: true,
           automaticallyImplyLeading: false,
@@ -62,6 +64,12 @@ class _ArticlesState extends State<Articles> {
                     itemBuilder: (context, index) =>
                         ArticleTile(article: articleData[index])),
               ),
+              // Expanded(
+              //   child: ListView.builder(
+              //       itemCount: articleData.length,
+              //       itemBuilder: (context, index) =>
+              //           Text(mapData[index]["title"])),
+              // ),
             ],
           ),
         ));

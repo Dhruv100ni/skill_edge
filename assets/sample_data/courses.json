@@ -1,0 +1,51 @@
+{
+  "Courses": [
+    {
+      "id": 1,
+      "title": "Operating Systems",
+      "description": "Complete OS interview preperation",
+      "chapters": [
+        {
+          "id": 1,
+          "title": "Introduction",
+          "videos": [
+            {
+              "id": 1,
+              "title": "What is OS",
+              "description": "Starter Video",
+              "url": "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4"
+            },
+            {
+              "id": 2,
+              "title": "What is OS",
+              "description": "Starter Video",
+              "url": "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4"
+            },
+            {
+              "id": 3,
+              "title": "What is OS",
+              "description": "Starter Video",
+              "url": "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4"
+            },
+            {
+              "id": 4,
+              "title": "What is OS",
+              "description": "Starter Video",
+              "url": "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "title": "Process Management",
+          "videos": []
+        },
+        {
+          "id": 3,
+          "title": "Scheduling Algorithms",
+          "videos": []
+        }
+      ]
+    }
+  ]
+}
