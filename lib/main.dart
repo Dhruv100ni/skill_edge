@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:skill_edge/screens/Articles/articles.dart';
 import 'package:skill_edge/screens/Courses/courses.dart';
+import 'package:skill_edge/screens/Profile/profile.dart';
 import 'package:skill_edge/screens/Welcome/welcome_screen.dart';
 
 void main() {
@@ -22,7 +23,8 @@ class MyApp extends StatelessWidget {
       routes: {
         "/": (context) => const WelcomeScreen(),
         "/articles": (context) => const Articles(),
-        "/courses": (context) => const Courses()
+        "/courses": (context) => const Courses(),
+        "/profile": (context) => const Profile(),
       },
     );
   }
