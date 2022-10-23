@@ -51,14 +51,14 @@ class _ProfileState extends State<Profile> {
                       BoxShadow(
                           spreadRadius: 2,
                           blurRadius: 10,
-                          color: Colors.black.withOpacity(0.1),
+                          color: Color.fromARGB(255, 1, 40, 73).withOpacity(0.1),
                           offset: const Offset(0, 10))
                     ],
                     shape: BoxShape.circle,
                     image: const DecorationImage(
                         fit: BoxFit.cover,
                         image: NetworkImage(
-                          "https://images.unsplash.com/photo-1517436073-7d3a7f9b1f0c?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YmFja2dyb3VuZCUyMGNvbnRyb2wlMjBwb3B1c3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80",
+                          "https://www.lunapic.com/editor/premade/o-ginger.gif",
                         ))),
               ),
               const SizedBox(
@@ -78,7 +78,7 @@ class _ProfileState extends State<Profile> {
                 decoration: const InputDecoration(
                   labelText: "Age",
                   border: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.teal)),
+                      borderSide: BorderSide(color: Colors.lightBlue)),
                   hintText: 'Input Age',
                 ),
                 // controller: ageController,
