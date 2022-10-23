@@ -5,7 +5,8 @@ class ArticleModel {
   final String title;     // title
   final String tldr;      // tldr
   final String content;   // content
-  final String image;     // image
+  final String image;
+  final String rating;   // image
   
   ArticleModel(
     this.id,
@@ -13,6 +14,7 @@ class ArticleModel {
     this.tldr,
     this.content,
     this.image,
+    this.rating
   );
 
   ArticleModel copyWith({
@@ -21,6 +23,7 @@ class ArticleModel {
     String? tldr,
     String? content,
     String? image,
+    String? rating,
   }) {
     return ArticleModel(
       id ?? this.id,
@@ -28,6 +31,7 @@ class ArticleModel {
       tldr ?? this.tldr,
       content ?? this.content,
       image ?? this.image,
+      rating ?? this.rating,
     );
   }
 
@@ -38,6 +42,7 @@ class ArticleModel {
       'tldr': tldr,
       'content': content,
       'image': image,
+      'rating': rating,
     };
   }
 
@@ -48,6 +53,7 @@ class ArticleModel {
       map['tldr'] as String,
       map['content'] as String,
       map['image'] as String,
+      map['rating'] as String,
     );
   }
 

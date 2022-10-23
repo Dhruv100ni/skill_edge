@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:skill_edge/screens/Articles/articles.dart';
 
 import '../../../components/already_have_an_account_acheck.dart';
 import 'package:skill_edge/constraints.dart';
+import '../../../components/landing_page.dart';
+import '../../Homepage/home.dart';
 import '../../Signup/signup_screen.dart';
 
 class LoginForm extends StatelessWidget {
@@ -47,9 +50,9 @@ class LoginForm extends StatelessWidget {
             tag: "login_btn",
             child: ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(
+                Navigator.push(
                   context,
-                  "/articles",
+                  MaterialPageRoute(builder: (context)=> const LandingPage()),
                 );
               },
               child: Text(
@@ -64,7 +67,7 @@ class LoginForm extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return const SignUpScreen();
+                    return const Articles();
                   },
                 ),
               );
