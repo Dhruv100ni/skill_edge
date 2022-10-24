@@ -2,6 +2,9 @@
   "Courses": [
     {
       "id": 1,
+      "field": "btech",
+      "branch": "CSE",
+      "image": "https://techsevi.com/wp-content/uploads/2021/04/Operating-System-Kya-Hai.jpg",
       "title": "Operating Systems",
       "description": "Complete OS interview preperation",
       "chapters": [

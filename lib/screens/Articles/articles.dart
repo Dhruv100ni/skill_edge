@@ -25,7 +25,8 @@ class _ArticlesState extends State<Articles> {
 
   void loadData() async {
     // await Future.delayed(const Duration(seconds: 2));
-    var articleJSON = await rootBundle.loadString("assets/sample_data/articles.json");
+    var articleJSON =
+        await rootBundle.loadString("assets/sample_data/articles.json");
     var decodedData = jsonDecode(articleJSON);
     // print(decodedData);
     articleData = List.from(decodedData["articles"])

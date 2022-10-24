@@ -7,11 +7,17 @@ class CourseModel {
   final int id;
   final String title;
   final String description;
+  final String field;
+  final String branch;
+  final String image;
   final List<Map> chapters;
   CourseModel({
     required this.id,
     required this.title,
     required this.description,
+    required this.field,
+    required this.branch,
+    required this.image,
     required this.chapters,
   });
 
@@ -19,12 +25,18 @@ class CourseModel {
     int? id,
     String? title,
     String? description,
+    String? field,
+    String? branch,
+    String? image,
     List<Map>? chapters,
   }) {
     return CourseModel(
       id: id ?? this.id,
       title: title ?? this.title,
       description: description ?? this.description,
+      field: field ?? this.field,
+      branch: branch ?? this.branch,
+      image: image ?? this.image,
       chapters: chapters ?? this.chapters,
     );
   }
@@ -34,6 +46,9 @@ class CourseModel {
       'id': id,
       'title': title,
       'description': description,
+      'field': field,
+      'branch': branch,
+      'image': image,
       'chapters': chapters,
     };
   }
@@ -43,6 +58,9 @@ class CourseModel {
       id: map['id'] as int,
       title: map['title'] as String,
       description: map['description'] as String,
+      field: map['field'] as String,
+      branch: map['branch'] as String,
+      image: map['image'] as String,
       chapters: List<Map>.from(
         (map['chapters'] as List<dynamic>).map<Map>(
           (x) => x,
@@ -58,7 +76,7 @@ class CourseModel {
 
   @override
   String toString() {
-    return 'CourseModel(id: $id, title: $title, description: $description, chapters: $chapters)';
+    return 'CourseModel(id: $id, title: $title, description: $description, field: $field, branch: $branch, image: $image, chapters: $chapters)';
   }
 
   @override
@@ -68,6 +86,9 @@ class CourseModel {
     return other.id == id &&
         other.title == title &&
         other.description == description &&
+        other.field == field &&
+        other.branch == branch &&
+        other.image == image &&
         listEquals(other.chapters, chapters);
   }
 
@@ -76,6 +97,9 @@ class CourseModel {
     return id.hashCode ^
         title.hashCode ^
         description.hashCode ^
+        field.hashCode ^
+        branch.hashCode ^
+        image.hashCode ^
         chapters.hashCode;
   }
 }

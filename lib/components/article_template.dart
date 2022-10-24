@@ -15,29 +15,31 @@ class ArticleTemplate extends StatelessWidget {
           return Article(article: article);
         }));
       },
-      child: Container(
-        constraints: const BoxConstraints(maxWidth: 130),
-        child: Padding(
-          padding: const EdgeInsets.all(4.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(bottom: 5),
-                child:
-                    SizedBox(height: 120, child: Image.network(article.image)),
-              ),
-              Text(
-                article.title,
-                style: const TextStyle(fontWeight: FontWeight.w800),
-                overflow: TextOverflow.ellipsis,
-              ),
-              Text(
-                article.tldr,
-                style: const TextStyle(fontWeight: FontWeight.w500),
-                overflow: TextOverflow.ellipsis,
-              ),
-            ],
+      child: Card(
+        child: Container(
+          constraints: const BoxConstraints(maxWidth: 130),
+          child: Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 5),
+                  child: SizedBox(
+                      height: 120, child: Image.network(article.image)),
+                ),
+                Text(
+                  article.title,
+                  style: const TextStyle(fontWeight: FontWeight.w800),
+                  overflow: TextOverflow.ellipsis,
+                ),
+                Text(
+                  article.tldr,
+                  style: const TextStyle(fontWeight: FontWeight.w500),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
           ),
         ),
       ),

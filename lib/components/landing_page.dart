@@ -12,7 +12,8 @@ class LandingPage extends StatefulWidget {
   State<LandingPage> createState() => _LandingPageState();
 }
 
-class _LandingPageState extends State<LandingPage> with TickerProviderStateMixin {
+class _LandingPageState extends State<LandingPage>
+    with TickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -45,11 +46,13 @@ class _LandingPageState extends State<LandingPage> with TickerProviderStateMixin
               Container(
                 height: 45,
                 decoration: BoxDecoration(
-                    color: Colors.grey[300], borderRadius: BorderRadius.circular(25)),
+                    color: Colors.grey[300],
+                    borderRadius: BorderRadius.circular(25)),
                 child: TabBar(
                   controller: _tabController,
                   indicator: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20.0), color: Colors.black),
+                      borderRadius: BorderRadius.circular(20.0),
+                      color: Colors.black),
                   labelColor: Colors.white,
                   unselectedLabelColor: Colors.black,
                   tabs: const [
@@ -61,15 +64,17 @@ class _LandingPageState extends State<LandingPage> with TickerProviderStateMixin
                 ),
               ),
               Expanded(
-                child: TabBarView(
-                  controller: _tabController,
-                  children: [
-                    Home(tabController: _tabController,),
-                    const Courses(),
-                    const Articles(),
-                    const Profile()],
-                )
-              )
+                  child: TabBarView(
+                controller: _tabController,
+                children: [
+                  Home(
+                    tabController: _tabController,
+                  ),
+                  const Courses(),
+                  const Articles(),
+                  const Profile()
+                ],
+              ))
             ],
           ),
         ),
