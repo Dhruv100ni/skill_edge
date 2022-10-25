@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skill_edge/components/landing_page.dart';
 import 'package:skill_edge/screens/Articles/articles.dart';
 import 'package:skill_edge/screens/Courses/courses.dart';
 import 'package:skill_edge/screens/Profile/profile.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.lightBlue,
       ),
       routes: {
-        "/": (context) => const WelcomeScreen(),
+        "/": (context) => const LandingPage(),
         "/articles": (context) => const Articles(),
         "/courses": (context) => const Courses(),
         "/profile": (context) => const Profile(),
