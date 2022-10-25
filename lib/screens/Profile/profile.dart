@@ -57,9 +57,9 @@ class _ProfileState extends State<Profile> {
                     ],
                     shape: BoxShape.circle,
                     image: const DecorationImage(
-                        fit: BoxFit.cover,
+                        fit: BoxFit.contain,
                         image: NetworkImage(
-                          "https://images.pexels.com/photos/462118/pexels-photo-462118.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+                          "https://images.pexels.com/photos/1382731/pexels-photo-1382731.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
                         ))),
               ),
               const SizedBox(
