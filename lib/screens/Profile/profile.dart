@@ -27,6 +27,7 @@ class _ProfileState extends State<Profile> {
         
         body: Container(
         padding: const EdgeInsets.only(left: 16, top: 25, right: 16),
+        
         child: GestureDetector(
           onTap: () {
             FocusScope.of(context).unfocus();
@@ -58,7 +59,7 @@ class _ProfileState extends State<Profile> {
                     image: const DecorationImage(
                         fit: BoxFit.cover,
                         image: NetworkImage(
-                          "https://www.lunapic.com/editor/premade/o-ginger.gif",
+                          "https://images.pexels.com/photos/462118/pexels-photo-462118.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
                         ))),
               ),
               const SizedBox(
@@ -73,6 +74,9 @@ class _ProfileState extends State<Profile> {
                 ),
                 // controller: displayNameController,
                 keyboardType: TextInputType.name,
+              ),
+              const SizedBox(
+                height: 15,
               ),
               TextField(
                 decoration: const InputDecoration(
@@ -105,14 +109,14 @@ class _ProfileState extends State<Profile> {
                   ),
                   TextButton(
                     onPressed: () {
-                      
+                      //Insert code to update user profile
                     },
                     child: const Text(
                       "SAVE",
                       style: TextStyle(
                           fontSize: 14,
                           letterSpacing: 2.2,
-                          color: Colors.white),
+                          color: Colors.black),
                     ),
                   )
                 ],
