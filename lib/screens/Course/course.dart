@@ -24,15 +24,15 @@ class Course extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Text(
               course.title,
               textScaleFactor: 1.4,
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: const TextStyle(fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text(course.description),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Row(
               children: [
                 Container(
@@ -43,11 +43,11 @@ class Course extends StatelessWidget {
                     padding: const EdgeInsets.all(5.0),
                     child: Text(
                       "Field: ${course.field.toUpperCase()}",
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 ),
                 Container(
@@ -58,19 +58,24 @@ class Course extends StatelessWidget {
                     padding: const EdgeInsets.all(5.0),
                     child: Text(
                       "Branch: ${course.branch.toUpperCase()}",
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                     ),
                   ),
                 )
               ],
             ),
-            SizedBox(
-                height: 300,
-                child: ListView.builder(
-                  itemBuilder: (context, index) =>
-                      ChapterTile(ind: index, chapter: chapters[index]),
-                  itemCount: chapters.length,
-                ))
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20.0),
+              child: SizedBox(
+                  height: 500,
+                  child: ListView.builder(
+                    itemBuilder: (context, index) => ChapterTile(
+                        ind: index,
+                        chapter: chapters[index],
+                        courseName: course.title),
+                    itemCount: chapters.length,
+                  )),
+            )
           ],
         ),
       )),
