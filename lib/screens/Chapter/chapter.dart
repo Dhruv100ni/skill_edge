@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:skill_edge/models/chapter_model.dart';
 import 'package:skill_edge/models/video_model.dart';
+import 'package:skill_edge/screens/VideoPage/video_page.dart';
 
 class Chapter extends StatelessWidget {
   final int ind;
@@ -48,6 +49,11 @@ class Chapter extends StatelessWidget {
                 child: ListView.builder(
                   itemBuilder: ((context, index) => Card(
                         child: ListTile(
+                            onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        VideoPage(video: videos[index]))),
                             title: Text(videos[ind].title),
                             trailing: const Text("Start")),
                       )),
