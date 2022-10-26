@@ -15,7 +15,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final String username = "Avnish";
+  final String username = "John Doe";
   List<ArticleModel> articleData = [];
 
   @override
