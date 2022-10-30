@@ -3,6 +3,7 @@ import 'package:skill_edge/screens/Login_SignUp/login.dart';
 import 'package:skill_edge/screens/Articles/articles.dart';
 import 'package:skill_edge/screens/Courses/courses.dart';
 import 'package:skill_edge/screens/Profile/profile.dart';
+import 'package:skill_edge/screens/login_signup_screen/login_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.lightBlue,
       ),
       routes: {
-        "/": (context) => Login(),
+        "/": (context) => const LoginScreen(),
         "/articles": (context) => const Articles(),
         "/courses": (context) => const Courses(),
         "/profile": (context) => const Profile(),

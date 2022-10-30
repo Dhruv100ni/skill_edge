@@ -36,6 +36,7 @@ class _SignupState extends State<Signup> {
         UserCredential userCredential = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(email: email, password: password);
         print(userCredential);
+        
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             backgroundColor: Colors.redAccent,
@@ -45,12 +46,16 @@ class _SignupState extends State<Signup> {
             ),
           ),
         );
-        Navigator.pushReplacement(
+        Navigator.push(
           context,
-          MaterialPageRoute(
-            builder: (context) => Login(),
-          ),
+          MaterialPageRoute(builder: (context) => Login()),
         );
+        // Navigator.pushReplacement(
+        //   context,
+        //   MaterialPageRoute(
+        //     builder: (context) => Login(),
+        //   ),
+        // );
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {
           print("Password Provided is too Weak");
