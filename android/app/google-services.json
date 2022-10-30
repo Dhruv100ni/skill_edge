@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "447696010844",
+    "project_id": "skill-edge-537fc",
+    "storage_bucket": "skill-edge-537fc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:447696010844:android:dbdcaa0a69c17dd2b23099",
+        "android_client_info": {
+          "package_name": "com.example.skill_edge"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "447696010844-60hi4vduuntj6034674irfmrqkd8liu2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCldlym0tSYPV_98x50nlUZs3CbXNFYwlA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "447696010844-60hi4vduuntj6034674irfmrqkd8liu2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
