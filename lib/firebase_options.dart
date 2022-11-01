@@ -44,39 +44,39 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBxz_nmuuY8hIKpZJuQBFuFa9kTOg92GEY',
-    appId: '1:755241422449:web:a84fc1e953ffd130e115d0',
-    messagingSenderId: '755241422449',
-    projectId: 'tech101-firebase-auth',
-    authDomain: 'tech101-firebase-auth.firebaseapp.com',
-    storageBucket: 'tech101-firebase-auth.appspot.com',
+    apiKey: "AIzaSyC4ZO6H2-CTVtis8NYfRKUbaqo-mbcKipg",
+      authDomain: "skill-edge-project.firebaseapp.com",
+      projectId: "skill-edge-project",
+      storageBucket: "skill-edge-project.appspot.com",
+      messagingSenderId: "615303483135",
+      appId: "1:615303483135:web:0e5983126d871f001746ca"
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyB17xXm3MG-d4RULIDsR8Btl1iQWlftLQA',
-    appId: '1:755241422449:android:602539bee5ad0ba1e115d0',
-    messagingSenderId: '755241422449',
-    projectId: 'tech101-firebase-auth',
-    storageBucket: 'tech101-firebase-auth.appspot.com',
+    apiKey: 'AIzaSyCQdDYhwitIY3fCFhlC5Bxx7lPGI7mKePY',
+    appId: '1:615303483135:android:8d80f9ccf45342b31746ca',
+    messagingSenderId: '615303483135',
+    projectId: 'skill-edge-project',
+    storageBucket: 'skill-edge-project.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBzr9l4e3yyplGrn5Rzg3dU310naV-NX04',
-    appId: '1:755241422449:ios:60000bcb0da4fd28e115d0',
-    messagingSenderId: '755241422449',
-    projectId: 'tech101-firebase-auth',
-    storageBucket: 'tech101-firebase-auth.appspot.com',
-    iosClientId: '755241422449-0basr5bte9t3v3k0hito3mvnn7es74iu.apps.googleusercontent.com',
-    iosBundleId: 'com.example.firebaseAuth',
+    apiKey: 'AIzaSyAAMcmZX9xrYChHVlWnZRSJXFHrqAVZnnw',
+    appId: '1:615303483135:ios:3c8020dc2fca4a291746ca',
+    messagingSenderId: '615303483135',
+    projectId: 'skill-edge-project',
+    storageBucket: 'skill-edge-project.appspot.com',
+    iosClientId: '615303483135-ev72kva1c294gqhqrskfo4jfmvteqlc5.apps.googleusercontent.com',
+    iosBundleId: 'com.example.skillEdge',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyBzr9l4e3yyplGrn5Rzg3dU310naV-NX04',
-    appId: '1:755241422449:ios:60000bcb0da4fd28e115d0',
-    messagingSenderId: '755241422449',
-    projectId: 'tech101-firebase-auth',
-    storageBucket: 'tech101-firebase-auth.appspot.com',
-    iosClientId: '755241422449-0basr5bte9t3v3k0hito3mvnn7es74iu.apps.googleusercontent.com',
-    iosBundleId: 'com.example.firebaseAuth',
+    apiKey: 'AIzaSyAAMcmZX9xrYChHVlWnZRSJXFHrqAVZnnw',
+    appId: '1:615303483135:ios:3c8020dc2fca4a291746ca',
+    messagingSenderId: '615303483135',
+    projectId: 'skill-edge-project',
+    storageBucket: 'skill-edge-project.appspot.com',
+    iosClientId: '615303483135-ev72kva1c294gqhqrskfo4jfmvteqlc5.apps.googleusercontent.com',
+    iosBundleId: 'com.example.skillEdge',
   );
 }
