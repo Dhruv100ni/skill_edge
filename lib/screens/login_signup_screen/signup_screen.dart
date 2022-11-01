@@ -2,7 +2,7 @@ import '/services/firebase_auth_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
+import '../../firebase_options.dart';
 import '/widgets/customized_button.dart';
 import '/widgets/customized_textfield.dart';
 import 'login_screen.dart';
@@ -71,18 +71,34 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 myController: _passwordController,
                 hintText: "Password",
                 isPassword: true,
+
               ),
               CustomizedTextfield(
                 myController: _confirmPasswordController,
                 hintText: "Confirm Password",
                 isPassword: true,
+                
               ),
               CustomizedButton(
                 buttonText: "Register",
                 buttonColor: Colors.black,
                 textColor: Colors.white,
-                onPressed: () {
-                  
+                onPressed: () async {
+                  try {
+                    await FirebaseAuthService().signup(
+                        _emailController.text.trim(),
+                        _passwordController.text.trim());
+
+                    if (!mounted) return;
+
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => const LoginScreen()));
+                  } on FirebaseException catch (e) {
+                    debugPrint(e.message);
+                  }
+
+                  // Navigator.push(context,
+                  //     MaterialPageRoute(builder: (_) => const LoginScreen()));
                 },
               ),
               Padding(

@@ -24,7 +24,9 @@ class CustomizedTextfield extends StatelessWidget {
           suffixIcon: isPassword!
               ? IconButton(
                   icon: const Icon(Icons.remove_red_eye, color: Colors.grey),
-                  onPressed: () {},
+                  onPressed: () {
+                    
+                  },
                 )
               : null,
           enabledBorder: OutlineInputBorder(

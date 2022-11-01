@@ -6,7 +6,8 @@ import '../login_signup_screen/signup_screen.dart';
 import '/widgets/customized_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
+import 'package:firebase_core/firebase_core.dart';
+import '../../firebase_options.dart';
 // import '/services/firebase_auth_service.dart';
 import '/widgets/customized_button.dart';
 import '../login_signup_screen/forgot_password.dart';
@@ -25,7 +26,10 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        
+        
           body: SizedBox(
+            
         height: MediaQuery.of(context).size.height,
         width: double.infinity,
         child: SingleChildScrollView(
@@ -104,10 +108,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         _passwordController.text.trim());
                     if (FirebaseAuth.instance.currentUser != null) {
                       if (!mounted) return;
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const LandingPage()));
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return const LandingPage();
+                      }));
                     }
 
                     //  This code is gone inside the catch block

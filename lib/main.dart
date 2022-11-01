@@ -4,9 +4,15 @@ import 'package:skill_edge/screens/Articles/articles.dart';
 import 'package:skill_edge/screens/Courses/courses.dart';
 import 'package:skill_edge/screens/Profile/profile.dart';
 import 'package:skill_edge/screens/login_signup_screen/login_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
+import '../../firebase_options.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
