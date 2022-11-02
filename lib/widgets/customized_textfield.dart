@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CustomizedTextfield extends StatelessWidget {
+class CustomizedTextfield extends StatefulWidget {
   final TextEditingController myController;
   final String? hintText;
   final bool? isPassword;
@@ -9,23 +9,31 @@ class CustomizedTextfield extends StatelessWidget {
       : super(key: key);
 
   @override
+  State<CustomizedTextfield> createState() => _CustomizedTextfieldState();
+}
+
+class _CustomizedTextfieldState extends State<CustomizedTextfield> {
+  bool showPassword = false;
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: TextField(
-        keyboardType: isPassword!
+        keyboardType: widget.isPassword!
             ? TextInputType.visiblePassword
             : TextInputType.emailAddress,
-        enableSuggestions: isPassword! ? false : true,
-        autocorrect: isPassword! ? false : true,
-        obscureText: isPassword ?? true,
-        controller: myController,
+        enableSuggestions: widget.isPassword! ? false : true,
+        autocorrect: widget.isPassword! ? false : true,
+        obscureText: !showPassword,
+        controller: widget.myController,
         decoration: InputDecoration(
-          suffixIcon: isPassword!
+          suffixIcon: widget.isPassword!
               ? IconButton(
                   icon: const Icon(Icons.remove_red_eye, color: Colors.grey),
                   onPressed: () {
-                    
+                    setState(() {
+                      showPassword = !showPassword;
+                    });
                   },
                 )
               : null,
@@ -37,7 +45,7 @@ class CustomizedTextfield extends StatelessWidget {
               borderRadius: BorderRadius.circular(10)),
           fillColor: const Color(0xffE8ECF4),
           filled: true,
-          hintText: hintText,
+          hintText: widget.hintText,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
           ),
