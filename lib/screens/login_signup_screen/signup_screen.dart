@@ -71,13 +71,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 myController: _passwordController,
                 hintText: "Password",
                 isPassword: true,
-
               ),
               CustomizedTextfield(
                 myController: _confirmPasswordController,
                 hintText: "Confirm Password",
                 isPassword: true,
-                
               ),
               CustomizedButton(
                 buttonText: "Register",
@@ -91,8 +89,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                     if (!mounted) return;
 
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => const LoginScreen()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const LoginScreen()));
                   } on FirebaseException catch (e) {
                     debugPrint(e.message);
                   }
@@ -165,9 +165,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             FontAwesomeIcons.apple,
                             // color: Colors.blue,
                           ),
-                          onPressed: () {
-
-                          },
+                          onPressed: () {},
                         ))
                   ],
                 ),
