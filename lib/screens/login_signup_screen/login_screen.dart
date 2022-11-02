@@ -26,10 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        
-        
           body: SizedBox(
-            
         height: MediaQuery.of(context).size.height,
         width: double.infinity,
         child: SingleChildScrollView(
@@ -38,19 +35,6 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: Container(
-                  height: 50,
-                  width: 50,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black, width: 1),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: IconButton(
-                      icon: const Icon(Icons.arrow_back_ios_sharp),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      }),
-                ),
               ),
               const Padding(
                 padding: EdgeInsets.all(10.0),
@@ -165,6 +149,8 @@ class _LoginScreenState extends State<LoginScreen> {
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
                       height: 1,
@@ -174,7 +160,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     const Text("Or Login with"),
                     Container(
                       height: 1,
-                      width: MediaQuery.of(context).size.height * 0.18,
+                      width: MediaQuery.of(context).size.height * 0.15,
                       color: Colors.grey,
                     ),
                   ],
@@ -224,7 +210,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           } else {
                             throw Exception("Error");
                           }
-                          
                         },
                       ),
                     ),
@@ -244,40 +229,33 @@ class _LoginScreenState extends State<LoginScreen> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const LandingPage())
-                            );
+                                    builder: (context) => const LandingPage()));
                           },
                         ))
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 140,
-              ),
+
               new GestureDetector(
                 onTap: () {
                   Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const SignUpScreen()
-                    )
-                  );
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SignUpScreen()));
                 },
-                child: Row(
-                  children: const [
-                    Text("Don't have an account?",
-                        style: TextStyle(
-                          color: Color(0xff1E232C),
-                          fontSize: 15,
-                        )),
-                    
-                    Text("  Register Now",
-                        
-                        style: TextStyle(
-                          color: Color(0xff35C2C1),
-                          fontSize: 15,
-                        )),
-                  ]
-                ),
+                child: Row(children: const [
+                  Padding(padding: EdgeInsets.all(8.0)),
+                  Text("Don't have an account?",
+                      style: TextStyle(
+                        color: Color(0xff1E232C),
+                        fontSize: 15,
+                      )),
+                  Text("  Register Now",
+                      style: TextStyle(
+                        color: Color(0xff35C2C1),
+                        fontSize: 15,
+                      )),
+                ]),
               )
               // Padding(
               //   padding: const EdgeInsets.fromLTRB(48, 8, 8, 8.0),
@@ -289,15 +267,15 @@ class _LoginScreenState extends State<LoginScreen> {
               //             color: Color(0xff1E232C),
               //             fontSize: 15,
               //           )),
-                    
+
               //       Text("  Register Now",
-                        
+
               //           style: TextStyle(
               //             color: Color(0xff35C2C1),
               //             fontSize: 15,
               //           )),
               //     ]
-                  
+
               //   ),
               // )
             ],

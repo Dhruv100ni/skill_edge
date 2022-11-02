@@ -9,25 +9,20 @@ import '../../components/welcome.dart';
 import '../Articles/articles.dart';
 import '../Courses/courses.dart';
 
-
 class Profile extends StatefulWidget {
   const Profile({super.key});
 
   @override
   // _ProfileState createState() => _ProfileState();
   State<Profile> createState() => _ProfileState();
-
-
 }
 
 class _ProfileState extends State<Profile> {
   @override
-  Widget build(BuildContext context) {  
+  Widget build(BuildContext context) {
     return Scaffold(
-        
-        body: Container(
+      body: Container(
         padding: const EdgeInsets.only(left: 16, top: 25, right: 16),
-        
         child: GestureDetector(
           onTap: () {
             FocusScope.of(context).unfocus();
@@ -52,7 +47,8 @@ class _ProfileState extends State<Profile> {
                       BoxShadow(
                           spreadRadius: 2,
                           blurRadius: 10,
-                          color: Color.fromARGB(255, 1, 40, 73).withOpacity(0.1),
+                          color:
+                              Color.fromARGB(255, 1, 40, 73).withOpacity(0.1),
                           offset: const Offset(0, 10))
                     ],
                     shape: BoxShape.circle,
@@ -89,9 +85,18 @@ class _ProfileState extends State<Profile> {
                 //
                 keyboardType: TextInputType.number,
               ),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text("Email: ", style: TextStyle(fontSize: 20),),
+              const SizedBox(
+                height: 15,
+              ),
+              TextField(
+                decoration: const InputDecoration(
+                  labelText: "Email",
+                  border: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.teal)),
+                  hintText: 'Inout Email',
+                ),
+                // controller: displayNameController,
+                keyboardType: TextInputType.name,
               ),
               const SizedBox(
                 height: 35,
@@ -125,8 +130,6 @@ class _ProfileState extends State<Profile> {
           ),
         ),
       ),
-
     );
-    
   }
 }
