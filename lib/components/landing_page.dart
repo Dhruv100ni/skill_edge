@@ -3,6 +3,7 @@ import 'package:skill_edge/screens/Courses/courses.dart';
 
 import '../screens/Articles/articles.dart';
 import '../screens/Homepage/home.dart';
+import '../screens/Profile/edit_profile.dart';
 import '../screens/Profile/profile.dart';
 
 class LandingPage extends StatefulWidget {
@@ -72,7 +73,7 @@ class _LandingPageState extends State<LandingPage>
                   ),
                   const Courses(),
                   const Articles(),
-                  const Profile()
+                  const EditProfilePage()
                 ],
               ))
             ],
