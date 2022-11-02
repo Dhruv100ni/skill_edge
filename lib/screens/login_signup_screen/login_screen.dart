@@ -23,13 +23,22 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   @override
+  void initState() {
+    super.initState();
+    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+      if (user != null) {
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return const LandingPage();
+        }));
+      }
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        
-        
           body: SizedBox(
-            
         height: MediaQuery.of(context).size.height,
         width: double.infinity,
         child: SingleChildScrollView(
@@ -224,7 +233,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           } else {
                             throw Exception("Error");
                           }
-                          
                         },
                       ),
                     ),
@@ -244,8 +252,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const LandingPage())
-                            );
+                                    builder: (context) => const LandingPage()));
                           },
                         ))
                   ],
@@ -257,27 +264,22 @@ class _LoginScreenState extends State<LoginScreen> {
               new GestureDetector(
                 onTap: () {
                   Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const SignUpScreen()
-                    )
-                  );
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SignUpScreen()));
                 },
-                child: Row(
-                  children: const [
-                    Text("Don't have an account?",
-                        style: TextStyle(
-                          color: Color(0xff1E232C),
-                          fontSize: 15,
-                        )),
-                    
-                    Text("  Register Now",
-                        
-                        style: TextStyle(
-                          color: Color(0xff35C2C1),
-                          fontSize: 15,
-                        )),
-                  ]
-                ),
+                child: Row(children: const [
+                  Text("Don't have an account?",
+                      style: TextStyle(
+                        color: Color(0xff1E232C),
+                        fontSize: 15,
+                      )),
+                  Text("  Register Now",
+                      style: TextStyle(
+                        color: Color(0xff35C2C1),
+                        fontSize: 15,
+                      )),
+                ]),
               )
               // Padding(
               //   padding: const EdgeInsets.fromLTRB(48, 8, 8, 8.0),
@@ -289,15 +291,15 @@ class _LoginScreenState extends State<LoginScreen> {
               //             color: Color(0xff1E232C),
               //             fontSize: 15,
               //           )),
-                    
+
               //       Text("  Register Now",
-                        
+
               //           style: TextStyle(
               //             color: Color(0xff35C2C1),
               //             fontSize: 15,
               //           )),
               //     ]
-                  
+
               //   ),
               // )
             ],
