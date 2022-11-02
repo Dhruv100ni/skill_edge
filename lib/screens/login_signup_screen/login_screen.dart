@@ -23,6 +23,18 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   @override
+  void initState() {
+    super.initState();
+    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+      if (user != null) {
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return const LandingPage();
+        }));
+      }
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
@@ -244,7 +256,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           builder: (context) => const SignUpScreen()));
                 },
                 child: Row(children: const [
-                  Padding(padding: EdgeInsets.all(8.0)),
                   Text("Don't have an account?",
                       style: TextStyle(
                         color: Color(0xff1E232C),
