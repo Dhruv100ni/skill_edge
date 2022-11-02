@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:skill_edge/screens/login_signup_screen/login_screen.dart';
 
 class SettingsUI extends StatelessWidget {
   const SettingsUI({super.key});
@@ -22,6 +24,14 @@ class EditProfilePage extends StatefulWidget {
 
 class _EditProfilePageState extends State<EditProfilePage> {
   bool showPassword = false;
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  signOut() async {
+    await auth.signOut();
+    // ignore: use_build_context_synchronously
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => const LoginScreen()));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,9 +43,34 @@ class _EditProfilePageState extends State<EditProfilePage> {
           },
           child: ListView(
             children: [
-              const Text(
-                "Edit Profile",
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+              Row(
+                children: [
+                  const Text(
+                    "Edit Profile",
+                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+                  ),
+                  const SizedBox(
+                    width: 140,
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      primary: Colors.grey,
+                      shape: const BeveledRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(5))),
+                    ),
+                    onPressed: () {
+                      signOut();
+                    },
+                    child: const Text(
+                      "Logout",
+                      style: TextStyle(
+                          fontSize: 14,
+                          letterSpacing: 2.2,
+                          color: Colors.black),
+                    ),
+                  )
+                ],
               ),
               const SizedBox(
                 height: 15,
@@ -114,14 +149,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     ),
                   ),
                   const SizedBox(
-                    width: 40,
+                    width: 70,
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(horizontal: 40),
                       primary: Colors.green,
                       shape: const BeveledRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(5))),
+                          borderRadius: BorderRadius.all(Radius.circular(8))),
                     ),
                     onPressed: () {},
                     child: const Text(
@@ -158,14 +193,19 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     icon: const Icon(Icons.remove_red_eye, color: Colors.grey),
                   )
                 : null,
-            contentPadding: const EdgeInsets.only(bottom: 35.0),
+            contentPadding: const EdgeInsets.only(bottom: 1.0),
             labelText: labelText,
+            labelStyle: const TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
             floatingLabelBehavior: FloatingLabelBehavior.always,
             hintText: placeholder,
             hintStyle: const TextStyle(
-              fontSize: 16,
+              fontSize: 12,
               fontWeight: FontWeight.bold,
-              color: Colors.black,
+              color: Colors.grey,
             )),
       ),
     );

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:skill_edge/screens/Login_SignUp/login.dart';
 import 'package:skill_edge/screens/Articles/articles.dart';
 import 'package:skill_edge/screens/Courses/courses.dart';
 import 'package:skill_edge/screens/Profile/profile.dart';
