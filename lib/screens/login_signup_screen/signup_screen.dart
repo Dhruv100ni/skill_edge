@@ -14,27 +14,64 @@ class SignUpScreen extends StatefulWidget {
   State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-const List<String> list = <String>['Select Branch', 'BTech', 'MTech', 'BCA'];
-const List<String> btechList = <String>[
-  'Select Field',
-  'CSE',
-  'ECE',
-  'MECH',
-  'CIVIL'
-];
-const List<String> mtechList = <String>[
-  'Select Field',
-  'AI',
-  'Robotics',
-  'Communication Engineering',
-  'CIVIL'
-];
-const List<String> bcaList = <String>[
-  'Select Field',
-  'Web Designing',
-  'Banking',
-  'Networking',
-];
+String _selectedBranch = "BTech";
+var branch = {'BTech': 'BT', 'MTech': 'MT', 'BCA': 'BCA'};
+
+List _branches = [];
+BranchDependentDropDown() {
+  branch.forEach((key, value) {
+    _branches.add(key);
+  });
+}
+
+String _selectedField = "";
+var field = {
+  'CSE': 'BT',
+  'ECE': 'BT',
+  'EEE': 'BT',
+  'MECH': 'BT',
+  'CIVIL': 'BT',
+  'IT': 'BT',
+  'AI': 'MT',
+  'ROBOTICS': 'MT',
+  'COMMUNICATION': 'MT',
+  'CIVIL': 'MT',
+  'WEB DESIGNING': 'BCA',
+  'BANKING': 'BCA',
+  'NETWORKING': 'BCA',
+};
+
+List _field = [];
+FieldDependentDropDown(branchShortName) {
+  field.forEach((key, value) {
+    if (branchShortName == value) {
+      _field.add(key);
+    }
+  });
+  _selectedField = _field[0];
+}
+
+// const List<String> list = <String>['Select Branch', 'BTech', 'MTech', 'BCA'];
+// const List<String> btechList = <String>[
+//   'Select Field',
+//   'CSE',
+//   'ECE',
+//   'MECH',
+//   'CIVIL'
+// ];
+// const List<String> mtechList = <String>[
+//   'Select Field',
+//   'AI',
+//   'Robotics',
+//   'Communication Engineering',
+//   'CIVIL'
+// ];
+// const List<String> bcaList = <String>[
+//   'Select Field',
+//   'Web Designing',
+//   'Banking',
+//   'Networking',
+// ];
 
 class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _emailController = TextEditingController();
@@ -43,7 +80,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _confirmPasswordController =
       TextEditingController();
 
-  String branchValue = list.first;
+  // String branchValue = list.first;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    BranchDependentDropDown();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -98,31 +142,38 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       color: Color(0xffE8ECF4)),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: DropdownButton<String>(
-                      value: branchValue,
+                    child: DropdownButton(
+                      value: _selectedBranch,
                       elevation: 16,
 
-                      onChanged: (String? value) {
-                        // This is called when the user selects an item.
+                      onChanged: (newValue) {
                         setState(() {
-                          branchValue = value!;
+                          _field = [];
+                          FieldDependentDropDown(branch[newValue]);
+                          _selectedBranch = "$newValue";
                         });
                       },
-                      items: list.map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(
-                            value,
-                            style: TextStyle(
-                              color: value == 'Select Branch'
-                                  ? Color.fromARGB(255, 136, 135, 135)
-                                  : Colors.black, //Font color
-                              fontSize: 16,
-                              //font size on dropdown button,
-                            ),
-                          ),
+                      items: _branches.map((branch) {
+                        return DropdownMenuItem(
+                          child: new Text(branch),
+                          value: branch,
                         );
                       }).toList(),
+                      // items: list.map<DropdownMenuItem<String>>((String value) {
+                      //   return DropdownMenuItem<String>(
+                      //     value: value,
+                      //     child: Text(
+                      //       value,
+                      //       style: TextStyle(
+                      //         color: value == 'Select Branch'
+                      //             ? Color.fromARGB(255, 136, 135, 135)
+                      //             : Colors.black, //Font color
+                      //         fontSize: 16,
+                      //         //font size on dropdown button,
+                      //       ),
+                      //     ),
+                      //   );
+                      // }).toList(),
                       borderRadius: BorderRadius.circular(10),
                       icon: const Padding(
                           //Icon at tail, arrow bottom is default icon
@@ -150,31 +201,45 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       color: Color(0xffE8ECF4)),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: DropdownButton<String>(
-                      value: branchValue,
+                    child: DropdownButton(
+                      // value: branchValue,
                       elevation: 16,
-
-                      onChanged: (String? value) {
-                        // This is called when the user selects an item.
+                      value: _selectedField,
+                      onChanged: (newValue) {
+                        print(newValue);
                         setState(() {
-                          branchValue = value!;
+                          print(newValue);
+
+                          _selectedField = "$newValue";
                         });
                       },
-                      items: list.map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(
-                            value,
-                            style: TextStyle(
-                              color: value == 'Select Branch'
-                                  ? Color.fromARGB(255, 136, 135, 135)
-                                  : Colors.black, //Font color
-                              fontSize: 16,
-                              //font size on dropdown button,
-                            ),
-                          ),
+                      items: _field.map((field) {
+                        return DropdownMenuItem(
+                          child: new Text(field),
+                          value: field,
                         );
                       }).toList(),
+                      // onChanged: (String? value) {
+                      //   // This is called when the user selects an item.
+                      //   setState(() {
+                      //     branchValue = value!;
+                      //   });
+                      // },
+                      // items: list.map<DropdownMenuItem<String>>((String value) {
+                      //   return DropdownMenuItem<String>(
+                      //     value: value,
+                      //     child: Text(
+                      //       value,
+                      //       style: TextStyle(
+                      //         color: value == 'Select Branch'
+                      //             ? Color.fromARGB(255, 136, 135, 135)
+                      //             : Colors.black, //Font color
+                      //         fontSize: 16,
+                      //         //font size on dropdown button,
+                      //       ),
+                      //     ),
+                      //   );
+                      // }).toList(),
                       borderRadius: BorderRadius.circular(10),
                       icon: const Padding(
                           //Icon at tail, arrow bottom is default icon
