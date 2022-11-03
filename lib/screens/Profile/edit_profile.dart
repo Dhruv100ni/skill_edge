@@ -23,7 +23,7 @@ class EditProfilePage extends StatefulWidget {
 }
 
 class _EditProfilePageState extends State<EditProfilePage> {
-  bool showPassword = false;
+  bool showPassword = true;
   final FirebaseAuth auth = FirebaseAuth.instance;
   signOut() async {
     await auth.signOut();
