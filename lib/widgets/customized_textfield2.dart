@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 
-class CustomizedTextfield extends StatefulWidget {
+class CustomizedTextfield2 extends StatefulWidget {
   final TextEditingController myController;
   final String? hintText;
   final bool? isPassword;
-  const CustomizedTextfield(
+  const CustomizedTextfield2(
       {Key? key, required this.myController, this.hintText, this.isPassword})
       : super(key: key);
 
   @override
-  State<CustomizedTextfield> createState() => _CustomizedTextfieldState();
+  State<CustomizedTextfield2> createState() => _CustomizedTextfieldState();
 }
 
-class _CustomizedTextfieldState extends State<CustomizedTextfield> {
-  bool showPassword = true;
+class _CustomizedTextfieldState extends State<CustomizedTextfield2> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -24,16 +23,13 @@ class _CustomizedTextfieldState extends State<CustomizedTextfield> {
             : TextInputType.emailAddress,
         enableSuggestions: widget.isPassword! ? false : true,
         autocorrect: widget.isPassword! ? false : true,
-        obscureText: showPassword,
         controller: widget.myController,
         decoration: InputDecoration(
           suffixIcon: widget.isPassword!
               ? IconButton(
                   icon: const Icon(Icons.remove_red_eye, color: Colors.grey),
                   onPressed: () {
-                    setState(() {
-                      showPassword = !showPassword;
-                    });
+                    setState(() {});
                   },
                 )
               : null,

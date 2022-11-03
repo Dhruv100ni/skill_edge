@@ -10,6 +10,7 @@ import 'package:firebase_core/firebase_core.dart';
 import '../../firebase_options.dart';
 // import '/services/firebase_auth_service.dart';
 import '/widgets/customized_button.dart';
+import '/widgets/customized_textfield2.dart';
 import '../login_signup_screen/forgot_password.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -57,7 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       fontWeight: FontWeight.bold,
                     )),
               ),
-              CustomizedTextfield(
+              CustomizedTextfield2(
                 myController: _emailController,
                 hintText: "Enter your Email",
                 isPassword: false,

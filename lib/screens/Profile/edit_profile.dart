@@ -100,7 +100,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 children: [
                   OutlinedButton(
                     style: OutlinedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(horizontal: 50),
+                      padding: const EdgeInsets.symmetric(horizontal: 40),
                       shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(20))),
                     ),
@@ -118,7 +118,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(horizontal: 50),
+                      padding: const EdgeInsets.symmetric(horizontal: 40),
                       primary: Colors.green,
                       shape: const BeveledRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(5))),

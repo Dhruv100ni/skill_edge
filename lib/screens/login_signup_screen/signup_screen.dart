@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '/widgets/customized_button.dart';
 import '/widgets/customized_textfield.dart';
+import '/widgets/customized_textfield2.dart';
 import 'login_screen.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -79,12 +80,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       fontWeight: FontWeight.bold,
                     )),
               ),
-              CustomizedTextfield(
+              CustomizedTextfield2(
                 myController: _usernameController,
                 hintText: "Username",
                 isPassword: false,
               ),
-              CustomizedTextfield(
+              CustomizedTextfield2(
                 myController: _emailController,
                 hintText: "Email",
                 isPassword: false,
