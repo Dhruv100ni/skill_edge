@@ -10,6 +10,7 @@ import 'package:firebase_core/firebase_core.dart';
 import '../../firebase_options.dart';
 // import '/services/firebase_auth_service.dart';
 import '/widgets/customized_button.dart';
+import '/widgets/customized_textfield2.dart';
 import '../login_signup_screen/forgot_password.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -45,21 +46,8 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Container(
-                  height: 50,
-                  width: 50,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black, width: 1),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: IconButton(
-                      icon: const Icon(Icons.arrow_back_ios_sharp),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      }),
-                ),
+              const Padding(
+                padding: EdgeInsets.all(10.0),
               ),
               const Padding(
                 padding: EdgeInsets.all(10.0),
@@ -70,7 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       fontWeight: FontWeight.bold,
                     )),
               ),
-              CustomizedTextfield(
+              CustomizedTextfield2(
                 myController: _emailController,
                 hintText: "Enter your Email",
                 isPassword: false,
@@ -174,6 +162,8 @@ class _LoginScreenState extends State<LoginScreen> {
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
                       height: 1,
@@ -183,7 +173,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     const Text("Or Login with"),
                     Container(
                       height: 1,
-                      width: MediaQuery.of(context).size.height * 0.18,
+                      width: MediaQuery.of(context).size.height * 0.15,
                       color: Colors.grey,
                     ),
                   ],
@@ -258,9 +248,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 140,
-              ),
+
               new GestureDetector(
                 onTap: () {
                   Navigator.push(

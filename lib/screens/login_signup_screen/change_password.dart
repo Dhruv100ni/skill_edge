@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:skill_edge/screens/Login_SignUp/login.dart';
+import 'package:skill_edge/screens/login_signup_screen/login_screen.dart';
 
 class ChangePassword extends StatefulWidget {
   ChangePassword({Key? key}) : super(key: key);
@@ -32,7 +32,7 @@ class _ChangePasswordState extends State<ChangePassword> {
       FirebaseAuth.instance.signOut();
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => Login()),
+        MaterialPageRoute(builder: (context) => LoginScreen()),
       );
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -51,28 +51,30 @@ class _ChangePasswordState extends State<ChangePassword> {
     return Form(
       key: _formKey,
       child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
         child: ListView(
           children: [
             Container(
-              margin: EdgeInsets.symmetric(vertical: 10.0),
-              child: TextFormField(
-                autofocus: false,
-                obscureText: true,
-                decoration: InputDecoration(
-                  labelText: 'New Password: ',
-                  hintText: 'Enter New Password',
-                  labelStyle: TextStyle(fontSize: 20.0),
-                  border: OutlineInputBorder(),
-                  errorStyle: TextStyle(color: Colors.redAccent, fontSize: 15),
+              margin: const EdgeInsets.symmetric(vertical: 10.0),
+              child: Material(
+                child: TextFormField(
+                  autofocus: false,
+                  obscureText: true,
+                  decoration: const InputDecoration(
+                    labelText: 'New Password: ',
+                    hintText: 'Enter New Password',
+                    labelStyle: TextStyle(fontSize: 20.0),
+                    border: OutlineInputBorder(),
+                    errorStyle: TextStyle(color: Colors.redAccent, fontSize: 15),
+                  ),
+                  controller: newPasswordController,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please Enter Password';
+                    }
+                    return null;
+                  },
                 ),
-                controller: newPasswordController,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please Enter Password';
-                  }
-                  return null;
-                },
               ),
             ),
             ElevatedButton(
@@ -85,7 +87,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                   changePassword();
                 }
               },
-              child: Text(
+              child: const Text(
                 'Change Password',
                 style: TextStyle(fontSize: 18.0),
               ),

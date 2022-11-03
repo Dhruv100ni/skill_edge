@@ -15,6 +15,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  //add provider here
   final String username = "John Doe";
   List<ArticleModel> articleData = [];
 
