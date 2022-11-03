@@ -1,8 +1,9 @@
 import 'dart:convert';
-
+import "package:provider/provider.dart";
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:skill_edge/components/article_template.dart';
+import 'package:skill_edge/providers/user_provider.dart';
 
 import '../../models/article_model.dart';
 
@@ -43,7 +44,7 @@ class _HomeState extends State<Home> {
         Row(
           children: [
             const Text("Welcome ", style: TextStyle(fontSize: 20)),
-            Text(username,
+            Text(context.watch<CurrentUser>().username,
                 style:
                     const TextStyle(fontSize: 20, fontWeight: FontWeight.w700))
           ],

@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:skill_edge/components/landing_page.dart';
+import 'package:skill_edge/providers/user_provider.dart';
 import '../../services/firebase_auth_service.dart';
 import '../login_signup_screen/home_screen.dart';
 import '../login_signup_screen/signup_screen.dart';
@@ -12,6 +13,7 @@ import '../../firebase_options.dart';
 import '/widgets/customized_button.dart';
 import '/widgets/customized_textfield2.dart';
 import '../login_signup_screen/forgot_password.dart';
+import "package:provider/provider.dart";
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -100,7 +102,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   // this try catch or add that code in catch block.
 
                   try {
-                    await FirebaseAuthService().login(
+                    // await FirebaseAuthService().login(
+                    //     _emailController.text.trim(),
+                    //     _passwordController.text.trim());
+                    await context.read<CurrentUser>().custLogin(
                         _emailController.text.trim(),
                         _passwordController.text.trim());
                     if (FirebaseAuth.instance.currentUser != null) {
