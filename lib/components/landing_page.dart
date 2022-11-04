@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:skill_edge/screens/Courses/courses.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import '../screens/Articles/articles.dart';
 import '../screens/Homepage/home.dart';
 import '../screens/Profile/edit_profile.dart';
 import '../screens/Profile/profile.dart';
+import "package:provider/provider.dart";
+import 'package:skill_edge/providers/user_provider.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});
@@ -16,11 +19,31 @@ class LandingPage extends StatefulWidget {
 class _LandingPageState extends State<LandingPage>
     with TickerProviderStateMixin {
   late TabController _tabController;
+  final FirebaseFirestore db = FirebaseFirestore.instance;
+  FirebaseAuth auth = FirebaseAuth.instance;
+
+  void fillState() async {
+    if (auth.currentUser != null) {
+      String uid = auth.currentUser!.uid;
+      print("Loi");
+      print(uid);
+      final docRef = db.collection("users").doc(uid);
+      docRef.get().then(
+        (DocumentSnapshot doc) {
+          final data = doc.data() as Map<String, dynamic>;
+          context.read<CurrentUser>().compLogin(
+              data["username"], data["email"], data["branch"], data["field"]);
+        },
+        onError: (e) => print("Error getting document: $e"),
+      );
+    }
+  }
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 4, vsync: this);
+    fillState();
   }
 
   @override
