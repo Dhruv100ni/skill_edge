@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:skill_edge/screens/login_signup_screen/change_password.dart';
 import 'package:skill_edge/screens/login_signup_screen/login_screen.dart';
 
 class SettingsUI extends StatelessWidget {
@@ -128,6 +129,34 @@ class _EditProfilePageState extends State<EditProfilePage> {
               buildTextField("E-Mail", "johndoe@gmail.com", false),
               buildTextField("Password", "*********", true),
               buildTextField("Phone Number", "XXXX-XXXX-XX", false),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Change Password",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.grey[600],
+                    ),
+                  ),
+                  InkWell(
+                    child: const Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.grey,
+                    ),
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return ChangePassword();
+                      }));
+                    },
+                  ),
+                ],
+              ),
               const SizedBox(
                 height: 35,
               ),
