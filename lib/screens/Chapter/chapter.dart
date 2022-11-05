@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:skill_edge/models/chapter_model.dart';
 import 'package:skill_edge/models/video_model.dart';
+import 'package:skill_edge/screens/Quiz/quiz_page.dart';
 import 'package:skill_edge/screens/VideoPage/video_page.dart';
 
 class Chapter extends StatelessWidget {
@@ -58,7 +59,8 @@ class Chapter extends StatelessWidget {
                             trailing: const Text("Start")),
                       )),
                   itemCount: videos.length,
-                ))
+                )),
+            
           ],
         ),
       )),

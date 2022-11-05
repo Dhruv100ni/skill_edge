@@ -48,6 +48,7 @@ dependencies:
   google_sign_in: ^5.4.2
   provider: ^6.0.4
   flutter_launcher_icons: ^0.10.0
+  flutter_countdown_timer: ^4.1.0
 
 dev_dependencies:
   flutter_test:
