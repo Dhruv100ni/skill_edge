@@ -5,7 +5,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../screens/Articles/articles.dart';
 import '../screens/Homepage/home.dart';
 import '../screens/Profile/edit_profile.dart';
-import '../screens/Profile/profile.dart';
 import "package:provider/provider.dart";
 import 'package:skill_edge/providers/user_provider.dart';
 

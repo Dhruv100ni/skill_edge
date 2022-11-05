@@ -3,6 +3,8 @@ import 'package:skill_edge/models/chapter_model.dart';
 import 'package:skill_edge/models/course_model.dart';
 import 'package:skill_edge/screens/Course/components/chapter_tile.dart';
 
+import '../Quiz/quiz_page.dart';
+
 class Course extends StatelessWidget {
   final CourseModel course;
   const Course({super.key, required this.course});
@@ -75,8 +77,14 @@ class Course extends StatelessWidget {
                         courseName: course.title),
                     itemCount: chapters.length,
                   )),
-            )
+            ),
+            ElevatedButton(onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context){
+                return const QuizPage();
+              }));
+            }, child: Text('Give Quiz'))
           ],
+          
         ),
       )),
     );
