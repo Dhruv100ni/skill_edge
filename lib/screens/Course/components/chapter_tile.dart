@@ -6,11 +6,13 @@ class ChapterTile extends StatelessWidget {
   final int ind;
   final ChapterModel chapter;
   final String courseName;
+  final String courseID;
   const ChapterTile(
       {super.key,
       required this.ind,
       required this.chapter,
-      required this.courseName});
+      required this.courseName,
+      required this.courseID});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,10 @@ class ChapterTile extends StatelessWidget {
               context,
               MaterialPageRoute(
                   builder: (context) => Chapter(
-                      ind: ind, chapter: chapter, courseName: courseName))),
+                      ind: ind,
+                      chapter: chapter,
+                      courseName: courseName,
+                      courseID: courseID))),
           title: Text("Chapter ${ind + 1}"),
           subtitle: Text(chapter.title),
           trailing: const Text("Learn"),

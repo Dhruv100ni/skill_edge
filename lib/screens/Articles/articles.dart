@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import "package:flutter/material.dart";
 import 'package:flutter/services.dart';
 import 'package:skill_edge/components/navigation_menu.dart';
@@ -24,15 +24,19 @@ class _ArticlesState extends State<Articles> {
   }
 
   void loadData() async {
-    // await Future.delayed(const Duration(seconds: 2));
-    var articleJSON =
-        await rootBundle.loadString("assets/sample_data/articles.json");
-    var decodedData = jsonDecode(articleJSON);
-    // print(decodedData);
-    articleData = List.from(decodedData["articles"])
+    // Getting data from cloud firestore
+    final FirebaseFirestore db = FirebaseFirestore.instance;
+    var querySnapshot = await db.collection("articles").get();
+    final allData = querySnapshot.docs.map((doc) {
+      Map<String, dynamic> cur = doc.data();
+      cur["id"] = doc.id;
+      return cur;
+    }).toList();
+    // print(allData);
+    articleData = List.from(allData)
         .map<ArticleModel>((article) => ArticleModel.fromMap(article))
         .toList();
-    //mapData = decodedData["articles"];
+
     setState(() {});
   }
 

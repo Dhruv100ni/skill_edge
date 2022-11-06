@@ -4,13 +4,12 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 
 class CourseModel {
-  final int id;
+  final String id;
   final String title;
   final String description;
   final String field;
   final String branch;
   final String image;
-  final List<Map> chapters;
   CourseModel({
     required this.id,
     required this.title,
@@ -18,17 +17,15 @@ class CourseModel {
     required this.field,
     required this.branch,
     required this.image,
-    required this.chapters,
   });
 
   CourseModel copyWith({
-    int? id,
+    String? id,
     String? title,
     String? description,
     String? field,
     String? branch,
     String? image,
-    List<Map>? chapters,
   }) {
     return CourseModel(
       id: id ?? this.id,
@@ -37,7 +34,6 @@ class CourseModel {
       field: field ?? this.field,
       branch: branch ?? this.branch,
       image: image ?? this.image,
-      chapters: chapters ?? this.chapters,
     );
   }
 
@@ -49,23 +45,17 @@ class CourseModel {
       'field': field,
       'branch': branch,
       'image': image,
-      'chapters': chapters,
     };
   }
 
   factory CourseModel.fromMap(Map<String, dynamic> map) {
     return CourseModel(
-      id: map['id'] as int,
+      id: map['id'] as String,
       title: map['title'] as String,
       description: map['description'] as String,
       field: map['field'] as String,
       branch: map['branch'] as String,
       image: map['image'] as String,
-      chapters: List<Map>.from(
-        (map['chapters'] as List<dynamic>).map<Map>(
-          (x) => x,
-        ),
-      ),
     );
   }
 
@@ -76,7 +66,7 @@ class CourseModel {
 
   @override
   String toString() {
-    return 'CourseModel(id: $id, title: $title, description: $description, field: $field, branch: $branch, image: $image, chapters: $chapters)';
+    return 'CourseModel(id: $id, title: $title, description: $description, field: $field, branch: $branch, image: $image)';
   }
 
   @override
@@ -88,8 +78,7 @@ class CourseModel {
         other.description == description &&
         other.field == field &&
         other.branch == branch &&
-        other.image == image &&
-        listEquals(other.chapters, chapters);
+        other.image == image;
   }
 
   @override
@@ -99,7 +88,6 @@ class CourseModel {
         description.hashCode ^
         field.hashCode ^
         branch.hashCode ^
-        image.hashCode ^
-        chapters.hashCode;
+        image.hashCode;
   }
 }
