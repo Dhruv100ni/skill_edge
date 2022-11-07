@@ -24,8 +24,6 @@ class _LandingPageState extends State<LandingPage>
   void fillState() async {
     if (auth.currentUser != null) {
       String uid = auth.currentUser!.uid;
-      print("Loi");
-      print(uid);
       final docRef = db.collection("users").doc(uid);
       docRef.get().then(
         (DocumentSnapshot doc) {
@@ -93,7 +91,9 @@ class _LandingPageState extends State<LandingPage>
                   Home(
                     tabController: _tabController,
                   ),
-                  const Courses(),
+                  Courses(
+                      branch: context.watch<CurrentUser>().branch,
+                      field: context.watch<CurrentUser>().field),
                   const Articles(),
                   const EditProfilePage()
                 ],

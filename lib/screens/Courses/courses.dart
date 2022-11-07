@@ -1,13 +1,15 @@
-import 'dart:convert';
-
+import "package:provider/provider.dart";
+import 'package:cloud_firestore/cloud_firestore.dart';
 import "package:flutter/material.dart";
-import 'package:flutter/services.dart';
-import 'package:skill_edge/components/navigation_menu.dart';
 import 'package:skill_edge/models/course_model.dart';
 import 'package:skill_edge/screens/Courses/course_tile.dart';
 
+import '../../providers/user_provider.dart';
+
 class Courses extends StatefulWidget {
-  const Courses({super.key});
+  final branch;
+  final field;
+  Courses({super.key, required this.branch, required this.field});
 
   @override
   State<Courses> createState() => _CoursesState();
@@ -15,6 +17,7 @@ class Courses extends StatefulWidget {
 
 class _CoursesState extends State<Courses> {
   List<CourseModel> courseData = [];
+  List<CourseModel> recomendedData = [];
 
   @override
   void initState() {
@@ -23,23 +26,45 @@ class _CoursesState extends State<Courses> {
   }
 
   void loadData() async {
+    // Fetch data from cloud firestore
+    final FirebaseFirestore db = FirebaseFirestore.instance;
+    var querySnapshot = await db.collection("courses").get();
+    final allData = querySnapshot.docs.map((doc) {
+      Map<String, dynamic> cur = doc.data();
+      cur["id"] = doc.id;
+      return cur;
+    }).toList();
+    // print(allData);
     // await Future.delayed(const Duration(seconds: 2));
-    var courseJSON =
-        await rootBundle.loadString("assets/sample_data/courses.json");
-    var decodedData = jsonDecode(courseJSON);
-    //print(decodedData);
-    courseData = List.from(decodedData["Courses"])
+    // var courseJSON =
+    //     await rootBundle.loadString("assets/sample_data/courses.json");
+    // var decodedData = jsonDecode(courseJSON);
+    // //print(decodedData);
+    courseData = List.from(allData)
         .map<CourseModel>((course) => CourseModel.fromMap(course))
+        .toList();
+    var recomSnapshot = await db
+        .collection("courses")
+        .where("branch", isEqualTo: widget.branch)
+        .where("field", isEqualTo: widget.field)
+        .get();
+    final recomData = recomSnapshot.docs.map((doc) {
+      Map<String, dynamic> cur = doc.data();
+      cur["id"] = doc.id;
+      return cur;
+    }).toList();
+    recomendedData = List.from(recomData)
+        .map<CourseModel>(((course) => CourseModel.fromMap(course)))
         .toList();
     setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    List<CourseModel> dummyData = [];
-    if (courseData.isNotEmpty) {
-      dummyData = List.generate(10, (index) => courseData[0]);
-    }
+    // List<CourseModel> dummyData = courseData;
+    // if (courseData.isNotEmpty) {
+    //   dummyData = List.generate(10, (index) => courseData[0]);
+    // }
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -55,8 +80,8 @@ class _CoursesState extends State<Courses> {
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) =>
-                  CourseTile(course: dummyData[index]),
-              itemCount: dummyData.length,
+                  CourseTile(course: recomendedData[index]),
+              itemCount: recomendedData.length,
               separatorBuilder: (BuildContext context, int index) =>
                   const SizedBox(
                 width: 12,
@@ -75,8 +100,8 @@ class _CoursesState extends State<Courses> {
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) =>
-                  CourseTile(course: dummyData[index]),
-              itemCount: dummyData.length,
+                  CourseTile(course: courseData[index]),
+              itemCount: courseData.length,
               separatorBuilder: (BuildContext context, int index) =>
                   const SizedBox(
                 width: 12,

@@ -2,7 +2,7 @@
 import 'dart:convert';
 
 class VideoModel {
-  final int id;
+  final String id;
   final String title;
   final String description;
   final String url;
@@ -14,7 +14,7 @@ class VideoModel {
   });
 
   VideoModel copyWith({
-    int? id,
+    String? id,
     String? title,
     String? description,
     String? url,
@@ -38,7 +38,7 @@ class VideoModel {
 
   factory VideoModel.fromMap(Map<String, dynamic> map) {
     return VideoModel(
-      id: map['id'] as int,
+      id: map['id'] as String,
       title: map['title'] as String,
       description: map['description'] as String,
       url: map['url'] as String,

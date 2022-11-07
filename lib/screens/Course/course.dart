@@ -1,20 +1,48 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import "package:flutter/material.dart";
 import 'package:skill_edge/models/chapter_model.dart';
 import 'package:skill_edge/models/course_model.dart';
 import 'package:skill_edge/screens/Course/components/chapter_tile.dart';
 
-import '../Quiz/quiz_page.dart';
+class Course extends StatefulWidget {
 
-class Course extends StatelessWidget {
   final CourseModel course;
   const Course({super.key, required this.course});
 
   @override
-  Widget build(BuildContext context) {
-    List<ChapterModel> chapters = List.from(course.chapters)
-        .map<ChapterModel>((chapter) => ChapterModel.fromMap(chapter))
-        .toList();
+  State<Course> createState() => _CourseState();
+}
 
+class _CourseState extends State<Course> {
+  List<ChapterModel> chapters = [];
+
+  @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
+
+  void loadData() async {
+    // Fetch data from cloud firestore
+    final FirebaseFirestore db = FirebaseFirestore.instance;
+    var querySnapshot = await db
+        .collection("courses")
+        .doc(widget.course.id)
+        .collection("chapters")
+        .get();
+    final allData = querySnapshot.docs.map((doc) {
+      Map<String, dynamic> cur = doc.data();
+      cur["id"] = doc.id;
+      return cur;
+    }).toList();
+    chapters = List.from(allData)
+        .map<ChapterModel>((course) => ChapterModel.fromMap(course))
+        .toList();
+    setState(() {});
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("SKILL EDGE"),
@@ -28,12 +56,12 @@ class Course extends StatelessWidget {
           children: [
             const SizedBox(height: 20),
             Text(
-              course.title,
+              widget.course.title,
               textScaleFactor: 1.4,
               style: const TextStyle(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
-            Text(course.description),
+            Text(widget.course.description),
             const SizedBox(height: 10),
             Row(
               children: [
@@ -44,7 +72,7 @@ class Course extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(5.0),
                     child: Text(
-                      "Field: ${course.field.toUpperCase()}",
+                      "Field: ${widget.course.field.toUpperCase()}",
                       style: const TextStyle(color: Colors.white),
                     ),
                   ),
@@ -59,7 +87,7 @@ class Course extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(5.0),
                     child: Text(
-                      "Branch: ${course.branch.toUpperCase()}",
+                      "Branch: ${widget.course.branch.toUpperCase()}",
                       style: const TextStyle(color: Colors.white),
                     ),
                   ),
@@ -74,7 +102,8 @@ class Course extends StatelessWidget {
                     itemBuilder: (context, index) => ChapterTile(
                         ind: index,
                         chapter: chapters[index],
-                        courseName: course.title),
+                        courseName: widget.course.title,
+                        courseID: widget.course.id),
                     itemCount: chapters.length,
                   )),
             ),

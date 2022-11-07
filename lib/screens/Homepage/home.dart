@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import "package:provider/provider.dart";
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -27,12 +28,19 @@ class _HomeState extends State<Home> {
   }
 
   void loadData() async {
-    var articleJSON =
-        await rootBundle.loadString("assets/sample_data/articles.json");
-    var decodedData = jsonDecode(articleJSON);
-    articleData = List.from(decodedData["articles"])
+    // Getting data from cloud firestore
+    final FirebaseFirestore db = FirebaseFirestore.instance;
+    var querySnapshot = await db.collection("articles").get();
+    final allData = querySnapshot.docs.map((doc) {
+      Map<String, dynamic> cur = doc.data();
+      cur["id"] = doc.id;
+      return cur;
+    }).toList();
+    // print(allData);
+    articleData = List.from(allData)
         .map<ArticleModel>((article) => ArticleModel.fromMap(article))
         .toList();
+
     setState(() {});
   }
 

@@ -2,8 +2,8 @@
 import 'dart:convert';
 
 class ArticleModel {
-  final int id; // id
-  final int courseID;
+  final String id; // id
+  final String courseID;
   final String title; // title
   final String tldr; // tldr
   final String content; // content
@@ -20,8 +20,8 @@ class ArticleModel {
   });
 
   ArticleModel copyWith({
-    int? id,
-    int? courseID,
+    String? id,
+    String? courseID,
     String? title,
     String? tldr,
     String? content,
@@ -53,8 +53,8 @@ class ArticleModel {
 
   factory ArticleModel.fromMap(Map<String, dynamic> map) {
     return ArticleModel(
-      id: map['id'] as int,
-      courseID: map['courseID'] as int,
+      id: map['id'] as String,
+      courseID: map['courseID'] as String,
       title: map['title'] as String,
       tldr: map['tldr'] as String,
       content: map['content'] as String,
