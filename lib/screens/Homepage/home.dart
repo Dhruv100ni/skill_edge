@@ -1,8 +1,6 @@
-import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import "package:provider/provider.dart";
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:skill_edge/components/article_template.dart';
 import 'package:skill_edge/providers/user_provider.dart';
 

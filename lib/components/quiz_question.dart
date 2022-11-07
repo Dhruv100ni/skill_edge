@@ -1,11 +1,14 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:skill_edge/components/quiz_option.dart';
 
 class Question extends StatefulWidget {
-  const Question({super.key});
+  final String question;
+  final String A;
+  final String B;
+  final String C;
+  final String D;
+  final String ans;
+  const Question({super.key, required this.question, required this.A, required this.B, required this.C, required this.D, required this.ans});
 
   @override
   State<Question> createState() => _QuestionState();
@@ -23,7 +26,7 @@ class _QuestionState extends State<Question> {
               child: Column(
                 children: [
                   Text(
-                    'Which space agency has decided to carry out first all-female spacewalk at the International Space Station(ISS)?',
+                    widget.question,
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
                   ),
                   const SizedBox(
@@ -34,7 +37,7 @@ class _QuestionState extends State<Question> {
                       backgroundColor: Color.fromARGB(255, 177, 209, 209)
                     ),
                     onPressed: (){},
-                    child: QuizOption(option: "A", value: "Roscosmos")
+                    child: QuizOption(option: "A", value: widget.A)
                   ),
                   const SizedBox(height: 40),
                   ElevatedButton(
@@ -42,7 +45,7 @@ class _QuestionState extends State<Question> {
                       backgroundColor: Color.fromARGB(255, 177, 209, 209)
                     ),
                     onPressed: (){},
-                    child: QuizOption(option: "B", value: "NASA")
+                    child: QuizOption(option: "B", value: widget.B)
                   ),
                   const SizedBox(height: 40),
                   ElevatedButton(
@@ -50,7 +53,7 @@ class _QuestionState extends State<Question> {
                       backgroundColor: Color.fromARGB(255, 177, 209, 209)
                     ),
                     onPressed: (){},
-                    child: QuizOption(option: "C", value: "ISRO")
+                    child: QuizOption(option: "C", value: widget.C)
                   ),
                   const SizedBox(height: 40),
                   ElevatedButton(
@@ -58,7 +61,7 @@ class _QuestionState extends State<Question> {
                       backgroundColor: Color.fromARGB(255, 177, 209, 209)
                     ),
                     onPressed: (){},
-                    child: QuizOption(option: "D", value: "JAXA",)
+                    child: QuizOption(option: "D", value: widget.D)
                   )
                 ],
               ),

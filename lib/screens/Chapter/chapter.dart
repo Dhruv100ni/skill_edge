@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import "package:flutter/material.dart";
+import 'package:skill_edge/components/landing_page.dart';
 import 'package:skill_edge/models/chapter_model.dart';
 import 'package:skill_edge/models/video_model.dart';
+import 'package:skill_edge/screens/Homepage/home.dart';
 import 'package:skill_edge/screens/Quiz/quiz_page.dart';
 import 'package:skill_edge/screens/VideoPage/video_page.dart';
 
@@ -23,6 +25,8 @@ class Chapter extends StatefulWidget {
 
 class _ChapterState extends State<Chapter> {
   List<VideoModel> videos = [];
+  String quizTitle = "";
+  int quizDuration = 0;
 
   @override
   void initState() {
@@ -33,14 +37,31 @@ class _ChapterState extends State<Chapter> {
   void loadData() async {
     // Fetch data from cloud firestore
     final FirebaseFirestore db = FirebaseFirestore.instance;
-    var querySnapshot = await db
+
+    var docRef = await db
+        .collection("courses")
+        .doc(widget.courseID)
+        .collection("chapters")
+        .doc(widget.chapter.id);
+
+    docRef.get().then(
+        (DocumentSnapshot doc) {
+          final data = doc.data() as Map<String, dynamic>;
+          quizDuration = data["quizDuration"];
+          quizTitle = data["quizTitle"];
+        },
+        onError: (e) => print("Error getting document: $e"),
+      );
+
+    var videosData = await db
         .collection("courses")
         .doc(widget.courseID)
         .collection("chapters")
         .doc(widget.chapter.id)
         .collection("videos")
         .get();
-    final allData = querySnapshot.docs.map((doc) {
+
+    final allData = videosData.docs.map((doc) {
       Map<String, dynamic> cur = doc.data();
       cur["id"] = doc.id;
       return cur;
@@ -48,12 +69,21 @@ class _ChapterState extends State<Chapter> {
     videos = List.from(allData)
         .map<VideoModel>((course) => VideoModel.fromMap(course))
         .toList();
+
     setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => QuizPage(courseID: widget.courseID, chapter: widget.chapter, quizDuration: quizDuration, quizTitle: quizTitle,)));
+        },
+        label: const Text('Give Quiz', style: TextStyle(color: Colors.white),),
+        
+        backgroundColor: Colors.black,
+      ),
       appBar: AppBar(
         title: const Text("SKILL EDGE"),
         backgroundColor: Colors.white,
@@ -93,7 +123,13 @@ class _ChapterState extends State<Chapter> {
                       )),
                   itemCount: videos.length,
                 )),
-            
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return const LandingPage();
+                  }));
+                },
+                child: Text('Give Quiz'))
           ],
         ),
       )),

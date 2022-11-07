@@ -108,11 +108,6 @@ class _CourseState extends State<Course> {
                     itemCount: chapters.length,
                   )),
             ),
-            ElevatedButton(onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context){
-                return const QuizPage();
-              }));
-            }, child: Text('Give Quiz'))
           ],
           
         ),

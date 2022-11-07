@@ -1,11 +1,19 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:skill_edge/components/landing_page.dart';
 import 'package:skill_edge/components/quiz_question.dart';
 
+import '../../models/chapter_model.dart';
+import '../../models/quiz_model.dart';
+
 class QuizPage extends StatefulWidget {
-  const QuizPage({super.key});
+  final String courseID;
+  final ChapterModel chapter;
+  final int quizDuration;
+  final String quizTitle;
+  const QuizPage({super.key, required this.courseID, required this.chapter, required this.quizDuration, required this.quizTitle});
 
   @override
   State<QuizPage> createState() => _QuizPageState();
@@ -14,14 +22,19 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> with TickerProviderStateMixin {
   late AnimationController progressController;
   late CountdownTimerController timerController;
+  List<QuizModel> questions = [];
+  
   
   // ENDING TIME OF QUIZ YYYY-MM-DD HH:MM:SS
-  static const time = "2022-11-05 19:34:00";
-  int timeLeft = DateTime.parse(time).millisecondsSinceEpoch - DateTime.now().millisecondsSinceEpoch;
-  int endTime = DateTime.parse(time).millisecondsSinceEpoch;
+  DateTime now = DateTime.now();
+  late int timeLeft;
+  late int endTime;
 
   @override
   void initState() {
+    var time = now.add(Duration(minutes: widget.quizDuration)).toString();//"2022-11-07 11:40:00";
+    timeLeft = DateTime.parse(time).millisecondsSinceEpoch - DateTime.now().millisecondsSinceEpoch;
+    endTime = DateTime.parse(time).millisecondsSinceEpoch;
     progressController = AnimationController(
         vsync: this, duration: Duration(milliseconds: timeLeft))
       ..addStatusListener((AnimationStatus status) {
@@ -41,7 +54,33 @@ class _QuizPageState extends State<QuizPage> with TickerProviderStateMixin {
       endTime: endTime,
       onEnd: timerOnEnd
     );
+    loadData();
     super.initState();
+  }
+
+  void loadData() async {
+    final FirebaseFirestore db = FirebaseFirestore.instance;
+
+    
+
+    var quizData = await db
+        .collection("courses")
+        .doc(widget.courseID)
+        .collection("chapters")
+        .doc(widget.chapter.id)
+        .collection("Questions")
+        .get();
+
+    final quiz = quizData.docs.map((doc){
+      Map<String, dynamic> cur = doc.data();
+      cur["id"] = doc.id;
+      return cur;
+    }).toList();
+    questions = List.from(quiz)
+        .map<QuizModel>((quiz) => QuizModel.fromMap(quiz))
+        .toList();
+
+    setState(() {});
   }
 
   void timerOnEnd() async {
@@ -87,8 +126,8 @@ class _QuizPageState extends State<QuizPage> with TickerProviderStateMixin {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
-                    'Science and Nature',
+                  Text(
+                    widget.quizTitle,
                     style: TextStyle(fontSize: 24),
                   )
                 ],
@@ -121,7 +160,7 @@ class _QuizPageState extends State<QuizPage> with TickerProviderStateMixin {
               const SizedBox(
                 height: 20,
               ),
-              Question(),
+              Question(question: questions[0].question, A: questions[0].A, B: questions[0].B, C: questions[0].C, D: questions[0].D, ans: questions[0].ans,),
               const SizedBox(
                 height: 80,
               ),
