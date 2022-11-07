@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import "package:flutter/material.dart";
 import 'package:skill_edge/models/chapter_model.dart';
 import 'package:skill_edge/models/video_model.dart';
+import 'package:skill_edge/screens/Quiz/quiz_page.dart';
 import 'package:skill_edge/screens/VideoPage/video_page.dart';
 
 class Chapter extends StatefulWidget {
@@ -91,7 +92,8 @@ class _ChapterState extends State<Chapter> {
                             trailing: const Text("Start")),
                       )),
                   itemCount: videos.length,
-                ))
+                )),
+            
           ],
         ),
       )),

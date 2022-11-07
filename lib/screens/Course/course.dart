@@ -5,6 +5,7 @@ import 'package:skill_edge/models/course_model.dart';
 import 'package:skill_edge/screens/Course/components/chapter_tile.dart';
 
 class Course extends StatefulWidget {
+
   final CourseModel course;
   const Course({super.key, required this.course});
 
@@ -105,8 +106,14 @@ class _CourseState extends State<Course> {
                         courseID: widget.course.id),
                     itemCount: chapters.length,
                   )),
-            )
+            ),
+            ElevatedButton(onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context){
+                return const QuizPage();
+              }));
+            }, child: Text('Give Quiz'))
           ],
+          
         ),
       )),
     );
