@@ -4,6 +4,7 @@ import "package:flutter/material.dart";
 import 'package:flutter/services.dart';
 import 'package:skill_edge/components/navigation_menu.dart';
 import 'package:skill_edge/models/article_model.dart';
+import 'package:skill_edge/screens/AddArticle/add_article.dart';
 import 'package:skill_edge/screens/Articles/components/article_tile.dart';
 
 class Articles extends StatefulWidget {
@@ -32,7 +33,6 @@ class _ArticlesState extends State<Articles> {
       cur["id"] = doc.id;
       return cur;
     }).toList();
-    // print(allData);
     articleData = List.from(allData)
         .map<ArticleModel>((article) => ArticleModel.fromMap(article))
         .toList();
@@ -42,17 +42,39 @@ class _ArticlesState extends State<Articles> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          Expanded(
-            child: ListView.builder(
-                itemCount: articleData.length,
-                itemBuilder: (context, index) =>
-                    ArticleTile(article: articleData[index])),
-          ),
-        ],
+    // int n = articleData.length;
+    // if (n > 0) {
+    //   articleData = List.generate(10, (index) => articleData[index % n]);
+    // }
+    return Scaffold(
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return AddArticle();
+          }));
+        },
+        label: const Text(
+          'Contribute',
+          style: TextStyle(color: Colors.white),
+        ),
+        icon: const Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
+        backgroundColor: Colors.black,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Expanded(
+              child: ListView.builder(
+                  itemCount: articleData.length,
+                  itemBuilder: (context, index) =>
+                      ArticleTile(article: articleData[index])),
+            ),
+          ],
+        ),
       ),
     );
   }
