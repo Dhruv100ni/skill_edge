@@ -26,7 +26,10 @@ class ArticleTemplate extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 5),
                   child: SizedBox(
-                      height: 120, child: Image.network(article.image)),
+                      height: 120,
+                      child: article.image == ""
+                          ? Image.asset("images/logo.jpg")
+                          : Image.network(article.image)),
                 ),
                 Text(
                   article.title,
