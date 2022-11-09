@@ -49,7 +49,7 @@ class _CourseState extends State<Course> {
         title: const Text("SKILL EDGE"),
         backgroundColor: Colors.white,
       ),
-      body: SingleChildScrollView(
+      body: chapters.length!=0 ? SingleChildScrollView(
           child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -108,15 +108,10 @@ class _CourseState extends State<Course> {
                     itemCount: chapters.length,
                   )),
             ),
-            ElevatedButton(onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context){
-                return const QuizPage();
-              }));
-            }, child: Text('Give Quiz'))
           ],
           
         ),
-      )),
+      )) : Center(child: CircularProgressIndicator(),),
     );
   }
 }

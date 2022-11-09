@@ -19,7 +19,7 @@ class ArticleTile extends StatelessWidget {
         leading: Container(
           constraints: BoxConstraints(minWidth: 90),
           child: article.image == ""
-              ? Image.asset("images/logo.jpg")
+              ? Image.asset("assets/images/logo.jpg")
               : Image.network(
                   article.image,
                   width: 100,

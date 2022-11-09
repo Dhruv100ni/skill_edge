@@ -28,7 +28,7 @@ class ArticleTemplate extends StatelessWidget {
                   child: SizedBox(
                       height: 120,
                       child: article.image == ""
-                          ? Image.asset("images/logo.jpg")
+                          ? Image.asset("assets/images/logo.jpg")
                           : Image.network(article.image)),
                 ),
                 Text(

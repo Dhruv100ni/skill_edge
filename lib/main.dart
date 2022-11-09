@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:skill_edge/providers/quiz_provider.dart';
 import 'package:skill_edge/providers/user_provider.dart';
 import 'package:skill_edge/screens/Articles/articles.dart';
 import 'package:skill_edge/screens/Courses/courses.dart';
@@ -14,7 +15,10 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(MultiProvider(
-    providers: [ChangeNotifierProvider(create: (_) => CurrentUser())],
+    providers: [
+      ChangeNotifierProvider(create: (_) => CurrentUser()),
+      ChangeNotifierProvider(create: (_) => QuizProvider())
+    ],
     child: const MyApp(),
   ));
 }
