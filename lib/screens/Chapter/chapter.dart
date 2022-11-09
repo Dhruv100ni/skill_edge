@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import "package:flutter/material.dart";
-import 'package:skill_edge/components/landing_page.dart';
+import 'package:skill_edge/components/loadQuizData.dart';
 import 'package:skill_edge/models/chapter_model.dart';
 import 'package:skill_edge/models/video_model.dart';
-import 'package:skill_edge/screens/Homepage/home.dart';
-import 'package:skill_edge/screens/Quiz/quiz_page.dart';
 import 'package:skill_edge/screens/VideoPage/video_page.dart';
+
+import '../Quiz/quiz_page.dart';
 
 class Chapter extends StatefulWidget {
   final int ind;
@@ -123,13 +123,6 @@ class _ChapterState extends State<Chapter> {
                       )),
                   itemCount: videos.length,
                 )),
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return const LandingPage();
-                  }));
-                },
-                child: Text('Give Quiz'))
           ],
         ),
       )),

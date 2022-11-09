@@ -22,6 +22,7 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> with TickerProviderStateMixin {
   late AnimationController progressController;
   late CountdownTimerController timerController;
+  late TabController _tabController;
   List<QuizModel> questions = [];
   
   
@@ -55,6 +56,7 @@ class _QuizPageState extends State<QuizPage> with TickerProviderStateMixin {
       onEnd: timerOnEnd
     );
     loadData();
+    
     super.initState();
   }
 
@@ -80,6 +82,9 @@ class _QuizPageState extends State<QuizPage> with TickerProviderStateMixin {
         .map<QuizModel>((quiz) => QuizModel.fromMap(quiz))
         .toList();
 
+    print(questions);
+
+    _tabController = TabController(length: questions.length, vsync: this);
     setState(() {});
   }
 
@@ -118,7 +123,7 @@ class _QuizPageState extends State<QuizPage> with TickerProviderStateMixin {
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
-        body: Padding(
+        body: questions.length==0 ? Center(child: CircularProgressIndicator(),) : Padding(
           padding: const EdgeInsets.all(8),
           child: Column(
             children: [
@@ -160,7 +165,42 @@ class _QuizPageState extends State<QuizPage> with TickerProviderStateMixin {
               const SizedBox(
                 height: 20,
               ),
-              Question(question: questions[0].question, A: questions[0].A, B: questions[0].B, C: questions[0].C, D: questions[0].D, ans: questions[0].ans,),
+              Container(
+                height: 45,
+                decoration: BoxDecoration(
+                    color: Colors.grey[300],
+                    borderRadius: BorderRadius.circular(25)),
+                child: TabBar(
+                  controller: _tabController,
+                  indicator: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      color: Colors.black),
+                  labelColor: Colors.white,
+                  unselectedLabelColor: Colors.black,
+                  // tabs: const [
+                  //   Tab(text: 'Home'),
+                  //   Tab(text: 'Courses'),
+                  //   Tab(text: 'Articles'),
+                  //   Tab(text: 'Profile')
+                  // ],
+                  tabs: [
+                    for(int i=1; i<questions.length+1; i++)
+                      Tab(text: i.toString())
+                  ]
+                ),
+              ),
+              Expanded(
+                  child: TabBarView(
+                controller: _tabController,
+                children: [
+                  for(int i=0; i<questions.length; i++)
+                    Question(question: questions[i].question, A: questions[i].A, B: questions[i].B, C: questions[i].C, D: questions[i].D, ans: questions[i].ans,),
+                ],
+              )),
+              // for(int i=0; i<questions.length; i++)
+                //Question(question: questions[i].question, A: questions[i].A, B: questions[i].B, C: questions[i].C, D: questions[i].D, ans: questions[i].ans,),
+              
+              // Question(question: questions[0].question, A: questions[0].A, B: questions[0].B, C: questions[0].C, D: questions[0].D, ans: questions[0].ans,),
               const SizedBox(
                 height: 80,
               ),
