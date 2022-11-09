@@ -21,7 +21,9 @@ class Article extends StatelessWidget {
               Center(
                 child: Container(
                   constraints: const BoxConstraints(maxWidth: 400),
-                  child: Image.network(article.image),
+                  child: article.image == ""
+                      ? Image.asset("images/logo.jpg")
+                      : Image.network(article.image),
                 ),
               ),
               const SizedBox(height: 20),
