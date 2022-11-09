@@ -63,7 +63,7 @@ class _ArticlesState extends State<Articles> {
         ),
         backgroundColor: Colors.black,
       ),
-      body: Padding(
+      body: articleData.length!=0 ? Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
@@ -75,7 +75,7 @@ class _ArticlesState extends State<Articles> {
             ),
           ],
         ),
-      ),
+      ) : Center(child: CircularProgressIndicator(),),
     );
   }
 }

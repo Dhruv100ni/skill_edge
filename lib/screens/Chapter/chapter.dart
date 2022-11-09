@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import "package:flutter/material.dart";
 import 'package:skill_edge/components/loadQuizData.dart';
 import 'package:skill_edge/models/chapter_model.dart';
@@ -27,6 +28,7 @@ class _ChapterState extends State<Chapter> {
   List<VideoModel> videos = [];
   String quizTitle = "";
   int quizDuration = 0;
+  int score = -1;
 
   @override
   void initState() {
@@ -45,13 +47,13 @@ class _ChapterState extends State<Chapter> {
         .doc(widget.chapter.id);
 
     docRef.get().then(
-        (DocumentSnapshot doc) {
-          final data = doc.data() as Map<String, dynamic>;
-          quizDuration = data["quizDuration"];
-          quizTitle = data["quizTitle"];
-        },
-        onError: (e) => print("Error getting document: $e"),
-      );
+      (DocumentSnapshot doc) {
+        final data = doc.data() as Map<String, dynamic>;
+        quizDuration = data["quizDuration"];
+        quizTitle = data["quizTitle"];
+      },
+      onError: (e) => print("Error getting document: $e"),
+    );
 
     var videosData = await db
         .collection("courses")
@@ -70,6 +72,21 @@ class _ChapterState extends State<Chapter> {
         .map<VideoModel>((course) => VideoModel.fromMap(course))
         .toList();
 
+    var scoreData = await db
+        .collection("courses")
+        .doc(widget.courseID)
+        .collection("chapters")
+        .doc(widget.chapter.id)
+        .collection("userScore")
+        .doc(FirebaseAuth.instance.currentUser!.uid);
+
+    await scoreData.get().then(
+      (DocumentSnapshot doc) {
+        final temp = doc.data() as Map<String, dynamic>;
+        score = temp["score"];
+      },
+      onError: (e) => {print("Error getting document: $e")},
+    );
     setState(() {});
   }
 
@@ -78,17 +95,30 @@ class _ChapterState extends State<Chapter> {
     return Scaffold(
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => QuizPage(courseID: widget.courseID, chapter: widget.chapter, quizDuration: quizDuration, quizTitle: quizTitle,)));
+          score == -1 ? Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => QuizPage(
+                        courseID: widget.courseID,
+                        chapter: widget.chapter,
+                        quizDuration: quizDuration,
+                        quizTitle: quizTitle,
+                      ))) : null;
         },
-        label: const Text('Give Quiz', style: TextStyle(color: Colors.white),),
-        
+        label: score == -1 ? const Text(
+          'Give Quiz',
+          style: TextStyle(color: Colors.white),
+        ) : Text(
+          'Score: $score',
+          style: TextStyle(color: Colors.white),
+        ),
         backgroundColor: Colors.black,
       ),
       appBar: AppBar(
         title: const Text("SKILL EDGE"),
         backgroundColor: Colors.white,
       ),
-      body: SingleChildScrollView(
+      body: videos.length!=0 ? SingleChildScrollView(
           child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -125,7 +155,7 @@ class _ChapterState extends State<Chapter> {
                 )),
           ],
         ),
-      )),
+      )) : Center(child: CircularProgressIndicator(),),
     );
   }
 }

@@ -56,7 +56,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
-                      primary: Colors.grey,
+                      backgroundColor: Colors.grey,
                       shape: const BeveledRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(5))),
                     ),
