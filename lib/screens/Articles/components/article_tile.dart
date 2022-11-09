@@ -10,22 +10,27 @@ class ArticleTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-        child: ListTile(
-          onTap: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return Article(article: article);
-            }));
-          },
-          leading: Image.network(
-            article.image,
-            width: 100,
-            // height: 300,
-          ),
-          title: Text(article.title),
-          subtitle: Text(article.tldr),
-          trailing: const Text("Read"),
-          isThreeLine: true,
+      child: ListTile(
+        onTap: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return Article(article: article);
+          }));
+        },
+        leading: Container(
+          constraints: BoxConstraints(minWidth: 90),
+          child: article.image == ""
+              ? Image.asset("images/logo.jpg")
+              : Image.network(
+                  article.image,
+                  width: 100,
+                  // height: 300,
+                ),
         ),
-      );
+        title: Text(article.title),
+        subtitle: Text(article.tldr),
+        trailing: const Text("Read"),
+        isThreeLine: true,
+      ),
+    );
   }
 }
