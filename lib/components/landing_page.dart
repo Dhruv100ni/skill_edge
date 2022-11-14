@@ -95,7 +95,12 @@ class _LandingPageState extends State<LandingPage>
                       branch: context.watch<CurrentUser>().branch,
                       field: context.watch<CurrentUser>().field),
                   const Articles(),
-                  const EditProfilePage()
+                  EditProfilePage(
+                    username: context.watch<CurrentUser>().username,
+                    email: context.watch<CurrentUser>().email,
+                    branch: context.watch<CurrentUser>().branch,
+                    field: context.watch<CurrentUser>().field,
+                  )
                 ],
               ))
             ],

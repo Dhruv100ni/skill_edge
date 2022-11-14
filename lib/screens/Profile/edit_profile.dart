@@ -3,21 +3,27 @@ import 'package:flutter/material.dart';
 import 'package:skill_edge/screens/login_signup_screen/change_password.dart';
 import 'package:skill_edge/screens/login_signup_screen/login_screen.dart';
 
-class SettingsUI extends StatelessWidget {
+/* class SettingsUI extends StatelessWidget {
   const SettingsUI({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Settings UI",
       home: EditProfilePage(),
     );
   }
-}
+} */
 
 class EditProfilePage extends StatefulWidget {
-  const EditProfilePage({super.key});
+  final username, email, branch, field;
+  EditProfilePage(
+      {super.key,
+      required this.username,
+      required this.email,
+      required this.branch,
+      required this.field});
 
   @override
   State<EditProfilePage> createState() => _EditProfilePageState();
@@ -125,10 +131,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
               const SizedBox(
                 height: 35,
               ),
-              buildTextField("Full Name", "John Doe", false),
-              buildTextField("E-Mail", "johndoe@gmail.com", false),
-              buildTextField("Password", "*********", true),
-              buildTextField("Phone Number", "XXXX-XXXX-XX", false),
+              buildTextField("UserName", widget.username, false),
+              buildTextField("E-Mail", widget.email, false),
+              buildTextField("Branch", widget.branch.toUpperCase(), false),
+              buildTextField("Field", widget.field.toUpperCase(), false),
               const SizedBox(
                 height: 10,
               ),
