@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:skill_edge/screens/Profile/choose_pic.dart';
 import 'package:skill_edge/screens/login_signup_screen/change_password.dart';
 import 'package:skill_edge/screens/login_signup_screen/login_screen.dart';
 
@@ -119,9 +120,17 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           ),
                           color: Colors.green,
                         ),
-                        child: const Icon(
-                          Icons.edit,
-                          color: Colors.white,
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return ChoosePic();
+                            }));
+                          },
+                          child: const Icon(
+                            Icons.edit,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     )
