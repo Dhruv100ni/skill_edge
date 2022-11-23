@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:skill_edge/screens/Courses/courses.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:skill_edge/screens/InterviewQuestions/interview_questions.dart';
 import '../screens/Articles/articles.dart';
 import '../screens/Homepage/home.dart';
 import '../screens/Profile/edit_profile.dart';
@@ -39,7 +40,7 @@ class _LandingPageState extends State<LandingPage>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 4, vsync: this);
+    _tabController = TabController(length: 5, vsync: this);
     fillState();
   }
 
@@ -70,6 +71,7 @@ class _LandingPageState extends State<LandingPage>
                     color: Colors.grey[300],
                     borderRadius: BorderRadius.circular(25)),
                 child: TabBar(
+                  isScrollable: true,
                   controller: _tabController,
                   indicator: BoxDecoration(
                       borderRadius: BorderRadius.circular(20.0),
@@ -80,7 +82,8 @@ class _LandingPageState extends State<LandingPage>
                     Tab(text: 'Home'),
                     Tab(text: 'Courses'),
                     Tab(text: 'Articles'),
-                    Tab(text: 'Profile')
+                    Tab(text: 'Profile'),
+                    Tab(text: 'Interview Questions'),
                   ],
                 ),
               ),
@@ -100,7 +103,8 @@ class _LandingPageState extends State<LandingPage>
                     email: context.watch<CurrentUser>().email,
                     branch: context.watch<CurrentUser>().branch,
                     field: context.watch<CurrentUser>().field,
-                  )
+                  ),
+                  const InterviewQuestions(),
                 ],
               ))
             ],

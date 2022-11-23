@@ -3,8 +3,13 @@ import "package:provider/provider.dart";
 import 'package:flutter/material.dart';
 import 'package:skill_edge/components/article_template.dart';
 import 'package:skill_edge/providers/user_provider.dart';
+import 'package:skill_edge/screens/Courses/course_tile.dart';
 
+import '../../components/company_template.dart';
 import '../../models/article_model.dart';
+import '../../models/companyQues_model.dart';
+import '../../models/company_model.dart';
+import '../../models/course_model.dart';
 
 class Home extends StatefulWidget {
   final TabController tabController;
@@ -18,6 +23,8 @@ class _HomeState extends State<Home> {
   //add provider here
   final String username = "John Doe";
   List<ArticleModel> articleData = [];
+  List<Company> companies= [];
+  List<CourseModel> courseData = [];
 
   @override
   void initState() {
@@ -39,13 +46,32 @@ class _HomeState extends State<Home> {
         .map<ArticleModel>((article) => ArticleModel.fromMap(article))
         .toList();
 
+    var companyCollection = await db.collection("companies").get();
+    final companyData = companyCollection.docs.map((doc){
+      Map<String, dynamic> cur = doc.data();
+      cur["id"] = doc.id;
+      return cur;
+    }).toList();
+    companies = List.from(companyData).map<Company>((comp)=>Company.fromMap(comp)).toList();
+
+    var courseCollection = await db.collection("courses").get();
+    final courses = courseCollection.docs.map((doc) {
+      Map<String, dynamic> cur = doc.data();
+      cur["id"] = doc.id;
+      return cur;
+    }).toList();
+
+    courseData = List.from(courses)
+        .map<CourseModel>((course) => CourseModel.fromMap(course))
+        .toList();
+
     setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: articleData.length!=0 ? ListView(
+      body: articleData.length!=0 && companies.length!=0 && courseData.length!=0? ListView(
         padding: const EdgeInsets.all(8.0),
         children: [
           Row(
@@ -96,9 +122,30 @@ class _HomeState extends State<Home> {
             constraints: const BoxConstraints(maxHeight: 180),
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: articleData.length,
+              itemCount: courseData.length,
               itemBuilder: ((context, index) =>
-                  ArticleTemplate(article: articleData[index])),
+                  CourseTile(course: courseData[index])),
+            ),
+          ),
+          Row(
+            children: [
+              const Text("Interview Questions",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400)),
+              const Spacer(),
+              TextButton(
+                  onPressed: () {
+                    widget.tabController.animateTo(4);
+                  },
+                  child: const Text("See all"))
+            ],
+          ),
+          Container(
+            constraints: const BoxConstraints(maxHeight: 180),
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: companies.length,
+              itemBuilder: ((context, index) =>
+                  CompanyTemplate(comp: companies[index])),
             ),
           ),
           const SizedBox(

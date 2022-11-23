@@ -41,6 +41,7 @@ class _CoursesState extends State<Courses> {
     courseData = List.from(allData)
         .map<CourseModel>((course) => CourseModel.fromMap(course))
         .toList();
+        
     var recomSnapshot = await db
         .collection("courses")
         .where("branch", isEqualTo: widget.branch)

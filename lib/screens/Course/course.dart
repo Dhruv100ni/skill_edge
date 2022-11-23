@@ -3,7 +3,6 @@ import "package:flutter/material.dart";
 import 'package:skill_edge/models/chapter_model.dart';
 import 'package:skill_edge/models/course_model.dart';
 import 'package:skill_edge/screens/Course/components/chapter_tile.dart';
-import '../Quiz/quiz_page.dart';
 
 class Course extends StatefulWidget {
 
