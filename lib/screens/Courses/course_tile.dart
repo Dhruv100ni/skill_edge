@@ -1,5 +1,4 @@
 import "package:flutter/material.dart";
-import 'package:skill_edge/models/chapter_model.dart';
 import 'package:skill_edge/models/course_model.dart';
 import 'package:skill_edge/screens/Course/course.dart';
 
@@ -9,39 +8,39 @@ class CourseTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      constraints: BoxConstraints(maxWidth: 130, maxHeight: 50),
-      // color: Colors.red,
-      child: InkWell(
+    return InkWell(
         onTap: () =>
             Navigator.push(context, MaterialPageRoute(builder: (context) {
           return Course(course: course);
         })),
         child: Card(
-          child: Padding(
-            padding: const EdgeInsets.all(4.0),
-            child:
+          child: Container(
+            constraints: const BoxConstraints(maxWidth: 150),
+            child: Padding(
+              padding: const EdgeInsets.all(4.0),
+              child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Image.network(course.image),
-              const SizedBox(
-                height: 4,
-              ),
-              Text(
-                course.title,
-                overflow: TextOverflow.fade,
-                style: TextStyle(fontWeight: FontWeight.w800),
-              ),
-              SizedBox(
-                height: 4,
-              ),
-              Text(
-                course.description,
-                overflow: TextOverflow.fade,
-              )
-            ]),
+                  Padding(
+                  padding: const EdgeInsets.only(bottom: 5),
+                  child: SizedBox(
+                      height: 120,
+                      child: course.image == ""
+                          ? Image.asset("assets/images/logo.jpg")
+                          : Image.network(course.image)),
+                ),
+                  Text(
+                    course.title,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(fontWeight: FontWeight.w800),
+                  ),
+                  Text(
+                    course.description,
+                    overflow: TextOverflow.ellipsis,
+                  )
+              ]),
+            ),
           ),
         ),
-      ),
-    );
+      );
   }
 }

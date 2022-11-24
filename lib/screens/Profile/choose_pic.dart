@@ -2,8 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:skill_edge/components/landing_page.dart';
-import 'package:skill_edge/screens/Profile/edit_profile.dart';
 
 class ChoosePic extends StatefulWidget {
   @override

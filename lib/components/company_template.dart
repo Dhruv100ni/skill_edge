@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:skill_edge/screens/InterviewQuestions/components/company_questions.dart';
+import '../models/company_model.dart';
 
-import '../models/article_model.dart';
-import '../screens/Article/article.dart';
-
-class ArticleTemplate extends StatelessWidget {
-  final ArticleModel article;
-  const ArticleTemplate({super.key, required this.article});
+class CompanyTemplate extends StatelessWidget {
+  final Company comp;
+  const CompanyTemplate({super.key, required this.comp});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
         Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return Article(article: article);
+          return CompanyQuestions(comp: comp);
         }));
       },
       child: Card(
         child: Container(
-          constraints: const BoxConstraints(maxWidth: 150),
+          constraints: const BoxConstraints(maxWidth: 130),
           child: Padding(
             padding: const EdgeInsets.all(4.0),
             child: Column(
@@ -27,18 +26,13 @@ class ArticleTemplate extends StatelessWidget {
                   padding: const EdgeInsets.only(bottom: 5),
                   child: SizedBox(
                       height: 120,
-                      child: article.image == ""
+                      child: comp.image == ""
                           ? Image.asset("assets/images/logo.jpg")
-                          : Image.network(article.image)),
+                          : Image.network(comp.image)),
                 ),
                 Text(
-                  article.title,
+                  comp.name,
                   style: const TextStyle(fontWeight: FontWeight.w800),
-                  overflow: TextOverflow.ellipsis,
-                ),
-                Text(
-                  article.tldr,
-                  style: const TextStyle(fontWeight: FontWeight.w500),
                   overflow: TextOverflow.ellipsis,
                 ),
               ],
