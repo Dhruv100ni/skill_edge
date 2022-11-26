@@ -49,16 +49,12 @@ class _ChapterState extends State<Chapter> {
     docRef.get().then(
       (DocumentSnapshot doc) {
         final data = doc.data() as Map<String, dynamic>;
-        print(data);
-        print('Chomu panti');
         quizDuration = data["quizDuration"];
         quizTitle = data["quizTitle"];
       },
       onError: (e) => print("Error getting document: $e"),
     );
 
-    print(widget.courseID + ' ' + widget.chapter.id);
-    
     var videosData = await db
         .collection("courses")
         .doc(widget.courseID)
@@ -67,16 +63,11 @@ class _ChapterState extends State<Chapter> {
         .collection("videos")
         .get();
 
-    print(videosData);
-    print('Fluterr Chomu');
-
     final allData = videosData.docs.map((doc) {
       Map<String, dynamic> cur = doc.data();
       cur["id"] = doc.id;
       return cur;
     }).toList();
-
-    print(allData);
 
     videos = List.from(allData)
         .map<VideoModel>((course) => VideoModel.fromMap(course))
@@ -92,10 +83,9 @@ class _ChapterState extends State<Chapter> {
 
     await scoreData.get().then(
       (DocumentSnapshot doc) {
-        if(doc.data() != null){ 
+        if (doc.data() != null) {
           final temp = doc.data() as Map<String, dynamic>;
           score = temp["score"];
-
         }
       },
       onError: (e) => {print("Error getting document: $e")},
@@ -108,67 +98,75 @@ class _ChapterState extends State<Chapter> {
     return Scaffold(
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          score == -1 ? Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => QuizPage(
-                        courseID: widget.courseID,
-                        chapter: widget.chapter,
-                        quizDuration: quizDuration,
-                        quizTitle: quizTitle,
-                      ))) : null;
+          score == -1
+              ? Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => QuizPage(
+                            courseID: widget.courseID,
+                            chapter: widget.chapter,
+                            quizDuration: quizDuration,
+                            quizTitle: quizTitle,
+                          )))
+              : null;
         },
-        label: score == -1 ? const Text(
-          'Give Quiz',
-          style: TextStyle(color: Colors.white),
-        ) : Text(
-          'Score: $score',
-          style: TextStyle(color: Colors.white),
-        ),
+        label: score == -1
+            ? const Text(
+                'Give Quiz',
+                style: TextStyle(color: Colors.white),
+              )
+            : Text(
+                'Score: $score',
+                style: TextStyle(color: Colors.white),
+              ),
         backgroundColor: Colors.black,
       ),
       appBar: AppBar(
         title: const Text("SKILL EDGE"),
         backgroundColor: Colors.white,
       ),
-      body: videos.length!=0 ? SingleChildScrollView(
-          child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 20),
-            Text(
-              "${widget.courseName} > ${widget.chapter.title}",
-              textScaleFactor: 1.4,
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 20),
-            const Text(
-              "Video Lectures",
-              style: TextStyle(fontSize: 15, color: Colors.blueGrey),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Container(
-                constraints: BoxConstraints(maxHeight: 1000),
-                child: ListView.builder(
-                  itemBuilder: ((context, index) => Card(
-                        child: ListTile(
-                            onTap: () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        VideoPage(video: videos[index]))),
-                            title: Text(videos[widget.ind].title),
-                            trailing: const Text("Start")),
+      body: videos.length != 0
+          ? SingleChildScrollView(
+              child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 20),
+                  Text(
+                    "${widget.courseName} > ${widget.chapter.title}",
+                    textScaleFactor: 1.4,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 20),
+                  const Text(
+                    "Video Lectures",
+                    style: TextStyle(fontSize: 15, color: Colors.blueGrey),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                      constraints: BoxConstraints(maxHeight: 1000),
+                      child: ListView.builder(
+                        itemBuilder: ((context, index) => Card(
+                              child: ListTile(
+                                  onTap: () => Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              VideoPage(video: videos[index]))),
+                                  title: Text(videos[index].title),
+                                  trailing: const Text("Start")),
+                            )),
+                        itemCount: videos.length,
                       )),
-                  itemCount: videos.length,
-                )),
-          ],
-        ),
-      )) : Center(child: CircularProgressIndicator(),),
+                ],
+              ),
+            ))
+          : Center(
+              child: CircularProgressIndicator(),
+            ),
     );
   }
 }
