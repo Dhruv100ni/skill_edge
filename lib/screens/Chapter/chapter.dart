@@ -49,12 +49,16 @@ class _ChapterState extends State<Chapter> {
     docRef.get().then(
       (DocumentSnapshot doc) {
         final data = doc.data() as Map<String, dynamic>;
+        print(data);
+        print('Chomu panti');
         quizDuration = data["quizDuration"];
         quizTitle = data["quizTitle"];
       },
       onError: (e) => print("Error getting document: $e"),
     );
 
+    print(widget.courseID + ' ' + widget.chapter.id);
+    
     var videosData = await db
         .collection("courses")
         .doc(widget.courseID)
@@ -63,11 +67,17 @@ class _ChapterState extends State<Chapter> {
         .collection("videos")
         .get();
 
+    print(videosData);
+    print('Fluterr Chomu');
+
     final allData = videosData.docs.map((doc) {
       Map<String, dynamic> cur = doc.data();
       cur["id"] = doc.id;
       return cur;
     }).toList();
+
+    print(allData);
+
     videos = List.from(allData)
         .map<VideoModel>((course) => VideoModel.fromMap(course))
         .toList();
@@ -82,8 +92,11 @@ class _ChapterState extends State<Chapter> {
 
     await scoreData.get().then(
       (DocumentSnapshot doc) {
-        final temp = doc.data() as Map<String, dynamic>;
-        score = temp["score"];
+        if(doc.data() != null){ 
+          final temp = doc.data() as Map<String, dynamic>;
+          score = temp["score"];
+
+        }
       },
       onError: (e) => {print("Error getting document: $e")},
     );
