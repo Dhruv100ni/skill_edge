@@ -51,6 +51,8 @@ dependencies:
   flutter_countdown_timer: ^4.1.0
   shared_preferences: ^2.0.15
   image_picker: ^0.8.6
+  url_launcher: ^6.1.7
+  mailto: ^2.0.0
 
 dev_dependencies:
   flutter_test:
