@@ -98,30 +98,39 @@ class _QuizPageState extends State<QuizPage> with TickerProviderStateMixin {
     setState(() {});
   }
 
-  void timerOnEnd() async {
-    await showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: Text('Quiz is over!'),
-            content: Text('Thanks for giving the quiz :)'),
-            actions: [
-              TextButton(
-                  onPressed: () {
-                    Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(builder: (context) => LandingPage()),
-                        ((route) => false));
-                  },
-                  child: Text('Go to homepage')),
-              TextButton(onPressed: () {}, child: Text('Check your result')),
-            ],
-          );
-        });
+  void submitQuiz() async {
+    int score = 0;
+    for (int i = 0; i < questions.length; i++)
+      if (context.read<QuizProvider>().getValue(i) ==
+          questions[i].ans) score++;
 
-    Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return const LandingPage();
-    }));
+    await FirebaseFirestore.instance
+        .collection("courses")
+        .doc(widget.courseID)
+        .collection("chapters")
+        .doc(widget.chapter.id)
+        .collection("userScore")
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .set({"score": score});
+
+    context.read<QuizProvider>().clearMap();
+    await showDialog(
+      context: context,
+      builder: (context) {
+        Future.delayed(Duration(seconds: 3), (){
+          Navigator.pop(context);
+        });
+        return AlertDialog(
+          title: Text('Quiz is over!'),
+          content: Text('Thanks for giving the quiz :)'),
+        );
+      }
+    );
+    await Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const LandingPage()), (route) => false);
+  }
+
+  void timerOnEnd() async {
+    submitQuiz();
   }
 
   @override
@@ -237,7 +246,7 @@ class _QuizPageState extends State<QuizPage> with TickerProviderStateMixin {
                               backgroundColor: Colors.orange),
                           onPressed: () {
                             _tabController
-                                .animateTo((_tabController.index - 1) % 2);
+                                .animateTo((_tabController.index - 1) % questions.length);
                           },
                           child: Row(
                             children: [
@@ -251,7 +260,7 @@ class _QuizPageState extends State<QuizPage> with TickerProviderStateMixin {
                               backgroundColor: Colors.orange),
                           onPressed: () {
                             _tabController
-                                .animateTo((_tabController.index + 1) % 2);
+                                .animateTo((_tabController.index + 1) % questions.length);
                           },
                           child: Row(
                             children: [
@@ -265,36 +274,7 @@ class _QuizPageState extends State<QuizPage> with TickerProviderStateMixin {
                     ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.black),
-                        onPressed: () async {
-                          int score = 0;
-                          for (int i = 0; i < questions.length; i++)
-                            if (context.read<QuizProvider>().getValue(i) ==
-                                questions[i].ans) score++;
-
-                          await FirebaseFirestore.instance
-                              .collection("courses")
-                              .doc(widget.courseID)
-                              .collection("chapters")
-                              .doc(widget.chapter.id)
-                              .collection("userScore")
-                              .doc(FirebaseAuth.instance.currentUser!.uid)
-                              .set({"score": score});
-
-                          context.read<QuizProvider>().clearMap();
-                          await showDialog(
-                            context: context,
-                            builder: (context) {
-                              Future.delayed(Duration(seconds: 3), (){
-                                Navigator.pop(context);
-                              });
-                              return AlertDialog(
-                                title: Text('Quiz is over!'),
-                                content: Text('Thanks for giving the quiz :)'),
-                              );
-                            }
-                          );
-                          await Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const LandingPage()), (route) => false);
-                        },
+                        onPressed: () {submitQuiz();},
                         child: Text(
                           'Submit Quiz',
                           style: TextStyle(color: Colors.white),
