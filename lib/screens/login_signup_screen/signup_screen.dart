@@ -369,8 +369,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
+
                   child: Row(
-                    // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text("Already have an account?",
                           style: TextStyle(
@@ -384,6 +385,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               MaterialPageRoute(
                                   builder: (_) => const LoginScreen()));
                         },
+                        
                         child: const Text("  Login Now",
                             style: TextStyle(
                               color: Color(0xff35C2C1),
