@@ -25,7 +25,8 @@ class VideoPage extends StatelessWidget {
             Container(
                 constraints: BoxConstraints(maxHeight: 300),
                 child: MyVideoPlayer(
-                    video: VideoPlayerController.network(video.url))),
+                    video: VideoPlayerController.network(video.url))
+            ),
             SizedBox(
               height: 20,
             ),

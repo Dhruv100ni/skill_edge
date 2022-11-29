@@ -7,30 +7,12 @@ class QuizOption extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Container(
-            width: 40,
-            height: 40,
-            alignment: Alignment.center,
-            decoration:
-                BoxDecoration(shape: BoxShape.circle, color: Colors.orange),
-            child: Text(
-              option,
-              style: TextStyle(color: Colors.white, fontSize: 20),
-            ),
-          ),
-          const SizedBox(
-            width: 16,
-          ),
-          Text(
-            value,
-            style: TextStyle(fontSize: 18),
-          )
-        ],
+    return Container(
+      constraints: const BoxConstraints(minWidth: 400, minHeight: 50),
+      alignment: Alignment.centerLeft,
+      child: Text(
+        value,
+        style: TextStyle(fontSize: 18),
       ),
     );
   }

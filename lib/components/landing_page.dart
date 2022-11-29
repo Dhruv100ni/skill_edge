@@ -84,7 +84,6 @@ class _LandingPageState extends State<LandingPage>
                     Tab(text: 'Articles'),
                     Tab(text: 'Interview Questions'),
                     Tab(text: 'Profile'),
-                    
                   ],
                 ),
               ),
@@ -106,7 +105,6 @@ class _LandingPageState extends State<LandingPage>
                     branch: context.watch<CurrentUser>().branch,
                     field: context.watch<CurrentUser>().field,
                   ),
-                  
                 ],
               ))
             ],
