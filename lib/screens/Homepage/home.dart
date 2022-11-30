@@ -162,7 +162,7 @@ class _HomeState extends State<Home> {
                     const Spacer(),
                     TextButton(
                         onPressed: () {
-                          widget.tabController.animateTo(4);
+                          widget.tabController.animateTo(3);
                         },
                         child: const Text("See all"))
                   ],
